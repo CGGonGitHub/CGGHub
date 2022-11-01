@@ -73,6 +73,7 @@ local CandyFarmToggle = UtilitiesSection:AddToggle("Candy Auto Farm", {flag = "T
             for i,v in pairs (CoinContainer:GetChildren()) do
                 if v.Name =="Coin_Server" then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Coin.CFrame
+                    task.wait(2)
                 end
             end
         end
