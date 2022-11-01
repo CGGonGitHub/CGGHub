@@ -3,7 +3,7 @@
 	Unprotected by nothing v2
 
 	you can use the loadstring: to get updates (recommended)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/BABFT/main/script.lua"))()
 	
 	Discord invite: https://discord.gg/dpy8s5dbPZ
 ]]
@@ -174,6 +174,66 @@ end)
 local Button = UtilitiesSection:AddButton("ServerHop", function()
 	game:GetService("TeleportService"):TeleportToPlaceInstance(537413528, game.Players.LocalPlayer)
 end)
+local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", default = false}, function(bool)
+    local previousPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    looping = bool 
+    
+    task.spawn(function() 
+        while looping == true do
+            x = Instance.new("Part")
+			x.Parent = game.Workspace
+			x.Anchored = true
+			x.Size = Vector3.new(6,6,6)
+			x.CFrame = CFrame.new(-51, 60, 1369)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 1369)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 2139)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2139)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 2909)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2909)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 2909)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2909)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 3679)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 3679)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 4449)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 4449)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 5219)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 5219)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 5989)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 5989)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 6759)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 6759)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 7529)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 7529)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			x.CFrame = CFrame.new(-51, 60, 8299)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 8299)
+			task.wait(5)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55, -358, 9492)
+			task.wait(15)
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+        end
+    end)
+end)
 -- Settings
 local Settings = Window:AddTab("Settings", {default = false})
 local Section = Settings:AddSection("real", {default = false})
@@ -181,6 +241,7 @@ local Section = Settings:AddSection("real", {default = false})
 local verycool = Window:AddTab("very cool!1!!", {default = false})
 local Credits = verycool:AddSection("Credits", {default = false})
 local Label = Credits:AddLabel("Everything - No.8#9194")
+local Label = Credits:AddLabel("Scripting Help - Gi#7331")
 local Discords = verycool:AddSection("Discord", {default = false})
 local Button = Discords:AddButton("My Discord", function()
 	setclipboard("https://discord.gg/dpy8s5dbPZ")
