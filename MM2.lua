@@ -57,8 +57,8 @@ local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 300, previousGravity,
 end)
 -- Utilities
 local UtilitiesTab = Window:AddTab("Utilities", {default = false})
-local UtilitiesSection = Tab:AddSection("Utilities", {default = false})
-local CandyFarmToggle = Section:AddToggle("Candy Auto Farm", {flag = "Toggle_Flag", default = false}, function(bool)
+local UtilitiesSection = UtilitiesTab:AddSection("Utilities", {default = false})
+local CandyFarmToggle = UtilitiesSection:AddToggle("Candy Auto Farm", {flag = "Toggle_Flag", default = false}, function(bool)
     looping = bool 
     
     task.spawn(function() 
