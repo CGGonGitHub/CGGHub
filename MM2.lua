@@ -16,7 +16,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
-	title = {"BABFT Info & other", "No.8#9194"},
+	title = {"Murder Mystery 2", "No.8#9194"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
@@ -78,4 +78,28 @@ local CandyFarmToggle = UtilitiesSection:AddToggle("Candy Auto Farm", {flag = "T
             end
         end
     end)
+end)
+-- Teleports
+local TeleportsTab = Window:AddTab("Teleports", {default = false})
+local LocationSection = TeleportsTab:AddSection("Locations", {default = false})
+local Dropdown = LocationSection:AddDropdown("Locations", {"Lobby", "Map", "Item3"}, {default = "Item1"}, function(selected)
+	if selected ==  "Lobby" then 
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.35,172,-13.5)
+	elseif selected == "Map" then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1846, -9, 840)
+	end
+end)
+local PlayerTPSection = TeleportsTab:AddSection("Players", {default = false})
+function getAllPlayers()
+	local playertable =  {}
+	for i, v in next, game.Players:GetPlayers() do
+		table.insert(playertable, v.Name)
+	end
+	return playertable
+end
+function Teleport(CFrame)
+	game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
+end
+local Dropdown = PlayerTPSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+	Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
 end)
