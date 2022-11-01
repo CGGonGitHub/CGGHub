@@ -57,3 +57,24 @@ local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 300, previousGravity,
 end)
 -- Utilities
 local UtilitiesTab = Window:AddTab("Utilities", {default = false})
+local UtilitiesSection = Tab:AddSection("Utilities", {default = false})
+local CandyFarmToggle = Section:AddToggle("Candy Auto Farm", {flag = "Toggle_Flag", default = false}, function(bool)
+    looping = bool 
+    
+    task.spawn(function() 
+        while looping == true do
+            local CoinContainer
+            for i,v in pairs(workspace:GetChildren()) do
+                CoinContainer = v:FindFirstChild("CoinContainer")
+                if CoinContainer then
+                    break
+                end
+            end
+            for i,v in pairs (CoinContainer:GetChildren()) do
+                if v.Name =="Coin_Server" then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Coin.CFrame
+                end
+            end
+        end
+    end)
+end)
