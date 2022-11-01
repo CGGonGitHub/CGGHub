@@ -225,15 +225,15 @@ local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", de
 			task.wait(5)
 			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55, -358, 9492)
-			task.wait(5)
-			game.Players.LocalPlayer.Character.Head:Destroy()
-			task.wait(10)
+			task.wait(9)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55, -358, 9492)
+			game.Players.LocalPlayer.CharacterAdded:Wait()
+			task.wait(3)
 			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
 			
         end
     end)
-end)
--- Settings
+end)-- Settings
 local Settings = Window:AddTab("Settings", {default = false})
 local Section = Settings:AddSection("real", {default = false})
 -- very cool!1!!
