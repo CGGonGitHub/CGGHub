@@ -4,6 +4,7 @@ for i, v in next, game.CoreGui:GetChildren() do
     end
 end
 
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
 	title = {"Tapping Simulator", "No.8#9194"},
@@ -27,15 +28,16 @@ local Toggle = MainshitSection:AddToggle("AutoClicker", {flag = "Toggle_Flag", d
         end
     end)
 end)
-local Toggle = MainshitSection:AddToggle("Auto Claim Random Rewards", {flag = "Toggle_Flag", default = false}, function(bool)
-    looping = bool 
-    
-    task.spawn(function() 
-        while looping == true do
-            game:GetService("ReplicatedStorage").Events.ClaimRandomReward:FireServer()
-            wait(10)
-        end
-    end)
+local Toggle = MainshitSection:AddToggle("Auto Rebirth", {flag = "Toggle_Flag", default = false}, function(bool2)
+	looping2 = bool2
+
+	task.spawn(function()
+		while looping2 == true do
+			local VIM = game:GetService("VirtualInputManager")
+			VIM:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+			wait()
+		end
+	end)
 end)
 
 -- Localplayer
