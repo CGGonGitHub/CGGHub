@@ -196,10 +196,6 @@ local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", de
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2909)
 			task.wait(5)
 			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
-			x.CFrame = CFrame.new(-51, 60, 2909)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2909)
-			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
 			x.CFrame = CFrame.new(-51, 60, 3679)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 3679)
 			task.wait(5)
