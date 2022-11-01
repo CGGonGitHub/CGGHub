@@ -187,49 +187,49 @@ local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", de
 			x.CFrame = CFrame.new(-51, 60, 1369)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 1369)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 2139)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2139)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 2909)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 2909)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 3679)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 3679)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 4449)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 4449)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 5219)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 5219)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 5989)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 5989)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 6759)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 6759)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 7529)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 7529)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			x.CFrame = CFrame.new(-51, 60, 8299)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 8299)
 			task.wait(5)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55, -358, 9492)
 			task.wait(9)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55, -358, 9492)
 			game.Players.LocalPlayer.CharacterAdded:Wait()
 			task.wait(3)
-			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition break end
+			if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = previousPosition x:Destroy() break end
 			
         end
     end)
