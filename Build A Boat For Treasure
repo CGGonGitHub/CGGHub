@@ -235,7 +235,7 @@ local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", de
     end)
 end)
 
-local Toggle = UtilitiesSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
+local Toggle = UtilitiesSection:AddToggle("Autofarm v2", {flag = "Toggle_Flag", default = false}, function(bool)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 1000)
 local TS = game:GetService("TweenService")
 
