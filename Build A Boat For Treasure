@@ -233,7 +233,20 @@ local Toggle = UtilitiesSection:AddToggle("Auto Farm", {flag = "Toggle_Flag", de
 			
         end
     end)
-end)-- Settings
+end)
+
+local Toggle = UtilitiesSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51, 65, 1000)
+local TS = game:GetService("TweenService")
+
+local Root = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+
+local info = TweenInfo.new(20)
+local Anim = TS:Create(Root, info, {CFrame = CFrame.new(-51, 65, 9492)})
+Anim:Play()
+task.wait(2)
+end)
+-- Settings
 local Settings = Window:AddTab("Settings", {default = false})
 local Section = Settings:AddSection("real", {default = false})
 -- very cool!1!!
