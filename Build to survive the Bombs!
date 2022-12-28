@@ -147,14 +147,6 @@ local Dropdown = BombSection:AddDropdown("Target", getAllPlayers(), {default = "
         task.wait(3.85)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
 end)
-function getAllPlayers()
-    local playertable =  {}
-    for i, v in next, game.Players:GetPlayers() do
-        table.insert(playertable, v.Name)
-    end
-    return playertable
-end
-
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
