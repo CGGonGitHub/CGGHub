@@ -6,7 +6,7 @@ end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 
 local Window = Library:AddWindow({
-	title = {"Vynixius", "UI Library"},
+	title = {"Build to survive the Bombs!", "No.9#5768"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
@@ -14,7 +14,7 @@ local Window = Library:AddWindow({
 	default = true
 })
 
-local Tab = Window:AddTab("Tab", {default = false})
+local Tab = Window:AddTab("Abuse", {default = false})
 
 local Section = Tab:AddSection("Abuse >:)", {default = false})
 
@@ -50,16 +50,6 @@ mouse.KeyUp:connect(function(key)
         up = false
     end
 end)
-end)
-
-local Box = Section:AddBox("Box", {fireonempty = true}, function(text)
-    game.ReplicatedStorage.Events.Explode:FireServer()
-	local player = game.Players.LocalPlayer
-    local mouse = player:GetMouse()
-    _G.target = game.Players[text]
-
-        task.wait(3.85)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.target.Character.HumanoidRootPart.CFrame
 end)
 function getAllPlayers()
     local playertable =  {}
@@ -167,7 +157,7 @@ local Dropdown = TrollingSection:AddDropdown("Trap someone ez L", getAllPlayers(
 
 end)
 
-local Button = TrollingSection:AddButton("R to Draw (enhance your free spirit)", function()
+local Button = TrollingSection:AddButton("enable R to Draw (enhance your free spirit)", function()
 	local player = game.Players.LocalPlayer
     local mouse = player:GetMouse()
     local up = false
@@ -186,4 +176,30 @@ local Button = TrollingSection:AddButton("R to Draw (enhance your free spirit)",
         up = false
     end
     end)
+end)
+-- Teleports
+local TeleportTab = Window:AddTab("Teleports", {default = false})
+local TeleportSection = TeleportTab:AddSection("Players", {default = false})
+function getAllPlayers()
+    local playertable =  {}
+    for i, v in next, game.Players:GetPlayers() do
+        table.insert(playertable, v.Name)
+    end
+    return playertable
+end
+function Teleport(CFrame)
+    game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
+end
+local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+    Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
+end)
+
+-- Misc
+local MiscTab = Window:AddTab("Misc", {default = false})
+local MiscSection = MiscTab:AddSection("funny stuff", {default = false})
+local Button = MiscSection:AddButton("Redeem all codes", function()
+	game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("15K")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("AMOGUS")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("WILBIMO")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("BOOM")
 end)
