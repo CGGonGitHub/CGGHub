@@ -111,6 +111,13 @@ end)
 
 -- Trolling
 local Trolling = Window:AddTab("Trolling", {default = false})
+function getAllPlayers()
+    local playertable =  {}
+    for i, v in next, game.Players:GetPlayers() do
+        table.insert(playertable, v.Name)
+    end
+    return playertable
+end
 local Dropdown = Trolling:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
 	playerPos = game.Players[selected].Character.HumanoidRootPart.Position
     blockPos = playerPos
