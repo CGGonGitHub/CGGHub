@@ -1,7 +1,7 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 
 local Window = Library:AddWindow({
-	title = {"thefartmaker101", "idk"},
+	title = {"Vynixius", "UI Library"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
@@ -9,24 +9,11 @@ local Window = Library:AddWindow({
 	default = true
 })
 
-local Tab = Window:AddTab("Main", {default = false})
+local Tab = Window:AddTab("Tab", {default = false})
 
-local Section = Tab:AddSection("Utilities", {default = false})
+local Section = Tab:AddSection("Section", {default = false})
 
-local Dropdown = Section:AddDropdown("target E", getAllPlayers(), {default = ""}, function(selected)
-	local player = game.Players.LocalPlayer
-local mouse = player:GetMouse()
-_G.target = game.Players[selected]
-
-mouse.KeyDown:connect(function(key)
-    if key == "e" then
-        task.wait(3.85)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.target.Character.HumanoidRootPart.CFrame
-    end
-end)
-end)
-
-local Button = Section:AddButton("Kill all heheheha", function()
+local Button = Section:AddButton("Button", function()
 	local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
@@ -58,4 +45,14 @@ mouse.KeyUp:connect(function(key)
         up = false
     end
 end)
+end)
+
+local Box = Section:AddBox("Box", {fireonempty = true}, function(text)
+    game.ReplicatedStorage.Events.Explode:FireServer()
+	local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    _G.target = game.Players[text]
+
+        task.wait(3.85)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.target.Character.HumanoidRootPart.CFrame
 end)
