@@ -16,7 +16,7 @@ local Window = Library:AddWindow({
 
 local Tab = Window:AddTab("Tab", {default = false})
 
-local Section = Tab:AddSection("Section", {default = false})
+local Section = Tab:AddSection("Abuse >:)", {default = false})
 
 local Button = Section:AddButton("Button", function()
 	local player = game.Players.LocalPlayer
@@ -120,6 +120,7 @@ function getAllPlayers()
     return playertable
 end
 local Dropdown = TrollingSection:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
+
 	playerPos = game.Players[selected].Character.HumanoidRootPart.Position
     blockPos = playerPos
     speed = 0.01
@@ -163,4 +164,26 @@ local Dropdown = TrollingSection:AddDropdown("Trap someone ez L", getAllPlayers(
     blockPos = playerPos + Vector3.new(-0.5,7,0)
     wait(speed)
     game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+end)
+
+local Button = TrolingSection:AddButton("R to Draw (enhance your free spirit)", function()
+	local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    local up = false
+
+    mouse.KeyDown:connect(function(key)
+    if key == "r" then
+        up = true
+            while up do
+            task.wait()
+                game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", mouse.Hit.p.x, mouse.Hit.p.y, mouse.Hit.p.z, 0, Workspace.Blocks)
+            end
+    end
+    end)
+    mouse.KeyUp:connect(function(key)
+    if key == "r" then
+        up = false
+    end
+    end)
 end)
