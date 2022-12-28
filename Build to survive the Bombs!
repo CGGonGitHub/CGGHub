@@ -79,7 +79,7 @@ local Dropdown = Section:AddDropdown("Target", getAllPlayers(), {default = ""}, 
 end)
 
 local Dropdown = Section:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
-	playerPos = game.Players.CGGonRoblox.Character.HumanoidRootPart.Position
+	playerPos = game.Players[selected].Character.HumanoidRootPart.Position
     blockPos = playerPos
     speed = 0.01
 
