@@ -167,7 +167,7 @@ local Dropdown = TrollingSection:AddDropdown("Trap someone ez L", getAllPlayers(
 
 end)
 
-local Button = TrolingSection:AddButton("R to Draw (enhance your free spirit)", function()
+local Button = TrollingSection:AddButton("R to Draw (enhance your free spirit)", function()
 	local player = game.Players.LocalPlayer
     local mouse = player:GetMouse()
     local up = false
