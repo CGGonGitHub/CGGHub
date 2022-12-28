@@ -13,7 +13,7 @@ local Tab = Window:AddTab("Main", {default = false})
 
 local Section = Tab:AddSection("Utilities", {default = false})
 
-local Dropdown = TeleportSection:AddDropdown("target E", getAllPlayers(), {default = ""}, function(selected)
+local Dropdown = Utilities:AddDropdown("target E", getAllPlayers(), {default = ""}, function(selected)
 	local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 _G.target = game.Players[selected]
@@ -26,7 +26,7 @@ mouse.KeyDown:connect(function(key)
 end)
 end)
 
-local Button = Section:AddButton("Kill all heheheha", function()
+local Button = Utilities:AddButton("Kill all heheheha", function()
 	local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
