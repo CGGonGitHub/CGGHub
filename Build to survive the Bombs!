@@ -110,7 +110,8 @@ local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 300, previousGravity,
 end)
 
 -- Trolling
-local Trolling = Window:AddTab("Trolling", {default = false})
+local TrollingTab = Window:AddTab("Trolling", {default = false})
+local TrollingSection = TrollingTab:AddSection("Trolling", {default = false})
 function getAllPlayers()
     local playertable =  {}
     for i, v in next, game.Players:GetPlayers() do
@@ -118,7 +119,7 @@ function getAllPlayers()
     end
     return playertable
 end
-local Dropdown = Trolling:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
+local Dropdown = TrollingSection:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
 	playerPos = game.Players[selected].Character.HumanoidRootPart.Position
     blockPos = playerPos
     speed = 0.01
