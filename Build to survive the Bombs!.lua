@@ -4,7 +4,12 @@ for i, v in next, game.CoreGui:GetChildren() do
     end
 end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
-
+Library:Notify({
+    title = "Welcome",
+    text = "Please join our Discord thanks",
+    duration = 10,
+    color = Color3.fromRGB(0, 255, 0),
+}) 
 local Window = Library:AddWindow({
 	title = {"Build to survive the Bombs!", "No.9#5768"},
 	theme = {
