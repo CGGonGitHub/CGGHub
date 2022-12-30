@@ -44,7 +44,7 @@ mouse.KeyDown:connect(function(key)
                     tool.Parent = game.Players.LocalPlayer.Character
                 end
                 CFrameBypass(tool, v.Character.HumanoidRootPart.CFrame)
-                game.ReplicatedStorage.Events.CreateThrow:FireServer(CFrame.new(0,-10000,0), Workspace.thefartmaker101["Corrupt Trident"])
+                game.ReplicatedStorage.Events.CreateThrow:FireServer(CFrame.new(0,-10000,0), Workspace.CGGonRoblox["Pitchfork"])
             end
             end
             end
