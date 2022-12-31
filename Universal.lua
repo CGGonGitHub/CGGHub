@@ -43,7 +43,7 @@ local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, 50, 
 	end
 end)
 local previousGravity = game.Workspace.Gravity
-local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 300, previousGravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val3, bool3)
+local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 1000, previousGravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val3, bool3)
 	if bool3 then
 		game.Workspace.Gravity = val3
 	end
