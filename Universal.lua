@@ -11,7 +11,13 @@ for i, v in next, game.CoreGui:GetChildren() do
         v:Destroy()
     end
 end
+local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
+-- Creates an interactable prompt
+Inviter.Prompt({
+    name = "CGG's awesome skid server",
+    invite = "https://discord.gg/qE95VSpvwW",
+})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
 	title = {"Universal", "the real#5282"},
@@ -66,9 +72,7 @@ function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
 local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
-    
     x = Instance.new("Part")
-    
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,0.5,0.5)
     x.Material = Enum.Material.Neon
@@ -101,4 +105,23 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
     Anim.Completed:Connect(function()
         x:Destroy()
     end)
+end)
+-- Misc
+local MiscTab = Window:AddTab("Misc", {default = false})
+local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
+local Button = JoinSection:AddButton("Button", function()
+	JobId = game.JobId
+    PlaceId = game.PlaceId
+    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
+end)
+local InfoLabel = JoinSection:AddLabel("Your Friend can get their JobId by executing the following script:")
+local ClipboardLabel = JoinSection:AddClipboardLabel("print(game.JobId)", function()
+	return "print(game.JobId)"
+end)
+local CreditsSection = MiscTab:AddSection("Credits", {default = false})
+local DualLabel = CreditsSection:AddDualLabel({"Vynixius", "providing the ui lib and discord utility"})
+local DualLabel = CreditsSection:AddDualLabel({"CGG (Me)", "everything else"})
+local Button = CreditsSection:AddButton("Join the Discord", function()
+	local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+    Inviter.Join("https://discord.gg/qE95VSpvwW")
 end)
