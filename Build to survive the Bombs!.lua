@@ -200,6 +200,24 @@ function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
 local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+    
+    x = Instance.new("Part")
+    x.Parent = game.Workspace
+    x.Shape = Enum.PartType.Cylinder
+    x.Size = Vector3.new(1000,0.5,0.5)
+    x.Material = Enum.Material.Neon
+    x.Color = Color3.fromRGB(0, 225, 255)
+    x.CFrame = game.Players.CGGonRoblox.Character.HumanoidRootPart.CFrame
+    x.Rotation = Vector3.new(0,0,90)
+    x.CanCollide = false
+    x.Anchored = true
+    local TS = game:GetService("TweenService")
+    local part = x
+    local info = TweenInfo.new(3)
+    local Anim = TS:Create(part, info, {Size=Vector3.new(1000,5,5)})
+    Anim:Play()
+    task.wait(3)
+    x:Destroy()
     Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
 end)
 
