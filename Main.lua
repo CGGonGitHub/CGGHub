@@ -14,3 +14,5 @@ else
 	    Duration = 10;
     })
 end
+
+-- [[ formatting by alyssa#2303 ]]--
