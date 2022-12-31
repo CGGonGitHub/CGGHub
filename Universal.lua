@@ -57,6 +57,29 @@ local Slider = Local_PlayerSection:AddSlider("Gravity", 1, 500, game.Workspace.G
 		game.Workspace.Gravity = previousGravity
 	end
 end)
+local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Flag", default = false}, function(bool4)
+    local Players = game:GetService("Players")
+    local Workspace = game:GetService("Workspace")
+    local Plr = Players.LocalPlayer
+    
+    if bool4 == true then
+        Clipon = true
+        Stepped = game:GetService("RunService").Stepped:Connect(function()
+            if not Clipon == false then
+                for a, b in pairs(Workspace:GetChildren()) do
+                if b.Name == Plr.Name then
+                for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
+                if v:IsA("BasePart") then
+                v.CanCollide = false
+                end end end end
+            else
+                Stepped:Disconnect()
+            end
+        end)
+    elseif bool4 == false then
+        Clipon = false
+    end
+end)
 
 -- Teleports
 local TeleportTab = Window:AddTab("Teleports", {default = false})
