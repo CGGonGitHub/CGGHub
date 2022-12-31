@@ -11,13 +11,6 @@ for i, v in next, game.CoreGui:GetChildren() do
         v:Destroy()
     end
 end
-local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
-
--- Creates an interactable prompt
-Inviter.Prompt({
-    name = "CGG's awesome skid server",
-    invite = "https://discord.gg/qE95VSpvwW",
-})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
 	title = {"Universal", "the real#5282"},
