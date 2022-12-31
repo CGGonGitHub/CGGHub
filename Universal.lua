@@ -25,7 +25,7 @@ local Window = Library:AddWindow({
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
 local previousWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
-local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, 16, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
 	end
@@ -34,7 +34,7 @@ local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, 16, {
 	end
 end)
 local previousJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
-local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, 50, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val2, bool2)
+local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, game.Players.LocalPlayer.Character.Humanoid.JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val2, bool2)
 	if bool2 then
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = val2
 	end
@@ -43,7 +43,7 @@ local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, 50, 
 	end
 end)
 local previousGravity = game.Workspace.Gravity
-local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 500, previousGravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val3, bool3)
+local Slider = Local_PlayerSection:AddSlider("Gravity", 0, 500, game.Workspace.Gravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val3, bool3)
 	if bool3 then
 		game.Workspace.Gravity = val3
 	end
