@@ -130,10 +130,6 @@ local Button = ESPSection:AddButton("ESP", function()
     local RunService = game:GetService("RunService")
     local highlight = Instance.new("Highlight")
     highlight.Name = "Highlight"
-    _G.FillColor = Color3.fromRGB(255,0,0)
-    _G.FillTransparency = 0.5
-    _G.OutlineColor = Color3.fromRGB(255,20,147)
-    _G.OutlineTransparency = 0
     for i, v in pairs(Players) do
         repeat wait() until v.Character
         if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
@@ -185,6 +181,18 @@ local Button = ESPSection:AddButton("ESP", function()
             end
         end
     end)
+end)
+local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
+	_G.FillColor = color
+end)
+local Slider = ESPSection:AddSlider("FillTransparency", 0, 1, 0, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	_G.FillTransparency = val
+end)
+local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
+	_G.OutlineColor = color
+end)
+local Slider = ESPSection:AddSlider("OutlineTransparency", 0, 1, 0, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	_G.OutlineTransparency = val
 end)
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
