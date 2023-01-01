@@ -137,7 +137,7 @@ local BombTab = Window:AddTab("Bomb", {default = false})
 local BombSection = BombTab:AddSection("while bomb", {default = false})
 function getAllPlayers()
     local playertable =  {}
-    for i, v in next, game.Players:GetPlayers() do
+    for i, v in next, game.Teams.Humans:GetPlayers() do
         table.insert(playertable, v.Name)
     end
     return playertable
