@@ -122,6 +122,70 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
         x:Destroy()
     end)
 end)
+-- Visuals
+local VisualsTab = Window:AddTab("Visuals", {default = false})
+local ESPSection = VisualsTab:AddSection("ESP", {default = false})
+local Button = ESPSection:AddButton("ESP", function()
+	local Players = game:GetService("Players"):GetChildren()
+    local RunService = game:GetService("RunService")
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "Highlight"
+    _G.FillColor = Color3.fromRGB(255,0,0)
+    _G.FillTransparency = 0.5
+    _G.OutlineColor = Color3.fromRGB(255,20,147)
+    _G.OutlineTransparency = 0
+    for i, v in pairs(Players) do
+        repeat wait() until v.Character
+        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = v.Character
+            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.Name = "Highlight"
+            highlightClone.FillColor = _G.FillColor
+            highlightClone.FillTransparency = _G.FillTransparency
+            highlightClone.OutlineColor = _G.OutlineColor
+            highlightClone.OutlineTransparency = _G.OutlineTransparency
+        end
+    end
+
+    game.Players.PlayerAdded:Connect(function(player)
+        repeat wait() until player.Character
+        if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = player.Character
+            highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.FillColor = _G.FillColor
+            highlightClone.FillTransparency = _G.FillTransparency
+            highlightClone.OutlineColor = _G.OutlineColor
+            highlightClone.OutlineTransparency = _G.OutlineTransparency
+            highlightClone.Name = "Highlight"
+        end    
+    end)
+
+    game.Players.PlayerRemoving:Connect(function(playerRemoved)
+        playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+    end)
+
+    RunService.Heartbeat:Connect(function()
+        for i, v in pairs(Players) do
+            repeat wait() until v.Character
+            if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Hightlight") then
+                local highlightClone = highlight:Clone()
+                highlightClone.Adornee = v.Character
+                highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+                highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                highlightClone.FillColor = _G.FillColor
+                highlightClone.FillTransparency = _G.FillTransparency
+                highlightClone.OutlineColor = _G.OutlineColor
+                highlightClone.OutlineTransparency = _G.OutlineTransparency
+                highlightClone.Name = "Highlight"
+                task.wait()
+            end
+        end
+    end)
+end)
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
 local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
