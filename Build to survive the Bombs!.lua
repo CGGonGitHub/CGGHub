@@ -151,6 +151,14 @@ local Dropdown = BombSection:AddDropdown("Target", getAllPlayers(), {default = "
         task.wait(3.85)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
 end)
+game.Teams.Humans.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
+end)
+game.Teams.Humans.PlayerRemoved:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
+end)
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
