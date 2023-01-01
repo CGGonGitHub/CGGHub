@@ -185,14 +185,15 @@ end)
 local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
 	_G.FillColor = color
 end)
-local Slider = ESPSection:AddSlider("FillTransparency", 0, 1, 0, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
-	_G.FillTransparency = val
+local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
+	_G.FillTransparency = text
 end)
+
 local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
 	_G.OutlineColor = color
 end)
-local Slider = ESPSection:AddSlider("OutlineTransparency", 0, 1, 0, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
-	_G.OutlineTransparency = val
+local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
+	_G.OutlineTransparency = text
 end)
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
