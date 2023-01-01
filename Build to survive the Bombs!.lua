@@ -111,14 +111,6 @@ local Dropdown = HumanSection:AddDropdown("Trap someone ez L", getAllPlayers(), 
     game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
 
 end)
-game.Teams.Humans.PlayerAdded:Connect(function()
-    Dropdown:ClearList()
-    Dropdown:SetList(getAllPlayers())
-end)
-game.Teams.Humans.PlayerRemoving:Connect(function()
-    Dropdown:ClearList()
-    DropDown:SetList(getAllPlayers())
-end)
 local Button = HumanSection:AddButton("enable R to Draw (enhance your free spirit)", function()
 	local player = game.Players.LocalPlayer
     local mouse = player:GetMouse()
