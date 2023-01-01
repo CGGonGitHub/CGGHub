@@ -122,13 +122,11 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
         x:Destroy()
     end)
 end)
-game.Players.PlayerAdded:Connect(function()
-    Dropdown:ClearList()
-    Dropdown:SetList(getAllPlayers())
+game.Players.PlayerAdded:Connect(function(player)
+    Dropdown:Add(player.Name)
 end)
-game.Players.PlayerRemoving:Connect(function()
-    Dropdown:ClearList()
-    DropDown:SetList(getAllPlayers())
+game.Players.PlayerRemoved:Connect(function(player)
+    Dropdown:Remove(player.Name)
 end)
 
 -- Visuals
