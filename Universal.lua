@@ -122,6 +122,15 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
         x:Destroy()
     end)
 end)
+game.Players.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
+end)
+game.Players.PlayerRemoving:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
+end)
+
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
