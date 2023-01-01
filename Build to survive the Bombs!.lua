@@ -18,17 +18,17 @@ local Window = Library:AddWindow({
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
-
+local player123 = game.Players.LocalPlayer.Name
 local HumanTab = Window:AddTab("Human", {default = false})
 
 local HumanSection = HumanTab:AddSection("Human", {default = false})
 
-local Button = HumanSection:AddButton("Kill All E", function()
+local Button = HumanSection:AddButton("Kill All E (pitchfork needed)", function()
 	local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
 mouse.KeyDown:connect(function(key)
-    if key == "f" then
+    if key == "E" then
         up = true
         while up do
             task.wait()
@@ -44,14 +44,14 @@ mouse.KeyDown:connect(function(key)
                     tool.Parent = game.Players.LocalPlayer.Character
                 end
                 CFrameBypass(tool, v.Character.HumanoidRootPart.CFrame)
-                game.ReplicatedStorage.Events.CreateThrow:FireServer(CFrame.new(0,-10000,0), Workspace.CGGonRoblox["Pitchfork"])
+                game.ReplicatedStorage.Events.CreateThrow:FireServer(CFrame.new(0,-10000,0), Workspace.player123["Pitchfork"])
             end
             end
             end
     end
 end)
 mouse.KeyUp:connect(function(key)
-    if key == "f" then
+    if key == "E" then
         up = false
     end
 end)
@@ -111,7 +111,14 @@ local Dropdown = HumanSection:AddDropdown("Trap someone ez L", getAllPlayers(), 
     game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
 
 end)
-
+game.Teams.Humans.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
+end)
+game.Teams.Humans.PlayerRemoving:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
+end)
 local Button = HumanSection:AddButton("enable R to Draw (enhance your free spirit)", function()
 	local player = game.Players.LocalPlayer
     local mouse = player:GetMouse()
@@ -151,6 +158,14 @@ local Dropdown = BombSection:AddDropdown("Target", getAllPlayers(), {default = "
         game.ReplicatedStorage.Events.Explode:FireServer()
         task.wait(3.85)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
+end)
+game.Teams.Bombs.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
+end)
+game.Teams.Bombs.PlayerRemoving:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
 end)
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
@@ -224,9 +239,8 @@ function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
 local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
-    
+   
     x = Instance.new("Part")
-    
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,0.5,0.5)
     x.Material = Enum.Material.Neon
@@ -237,11 +251,9 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
     x.Anchored = true
     x.Parent = game.Workspace
     local TS = game:GetService("TweenService")
-    local part = x
-    local info = TweenInfo.new(3)
-    local Anim = TS:Create(part, info, {Size=Vector3.new(1000,5,5)})
+    local Anim = TS:Create(x, TweenInfo.new(1), {Size=Vector3.new(1000,5,5)})
     Anim:Play()
-    task.wait(3)
+    task.wait(1)
     x:Destroy()
     Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
     x = Instance.new("Part")
@@ -256,12 +268,19 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
     x.Parent = game.Workspace
     x.Anchored = true
     local TS = game:GetService("TweenService")
-    local part = x
-    local info = TweenInfo.new(3)
-    local Anim = TS:Create(part, info, {Size=Vector3.new(1000,0.5,0.5)})
+    local Anim = TS:Create(x, TweenInfo.new(0.5), {Size=Vector3.new(1000,0.5,0.5)})
     Anim:Play()
-    task.wait(3)
-    x:Destroy()
+    Anim.Completed:Connect(function()
+        x:Destroy()
+    end)
+end)
+game.Players.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
+end)
+game.Players.PlayerRemoving:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
 end)
 
 -- Misc
