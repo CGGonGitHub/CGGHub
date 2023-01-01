@@ -125,7 +125,7 @@ end)
 game.Players.PlayerAdded:Connect(function(player)
     Dropdown:Add(player.Name)
 end)
-game.Players.PlayerRemoved:Connect(function(player)
+game.Players.PlayerRemoving:Connect(function(player)
     Dropdown:Remove(player.Name)
 end)
 
