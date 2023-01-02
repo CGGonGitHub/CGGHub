@@ -8,10 +8,6 @@ local Games = {
 if Games[game.PlaceId] then
 	loadstring(game:HttpGet(Games[game.PlaceId]))()
 else
-	game.StarterGui:SetCore("SendNotification", {
-	    Title = "CGG says";
-	    Text = "Game not supported, here is a universal one";
-	    Duration = 10;
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Universal.lua"))()
     })
 end
