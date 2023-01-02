@@ -1,11 +1,3 @@
---[[
-	Made by the real#5282 // CGG // CoolGermanGuy
-	Unprotected by nothing v2
-	you can use the loadstring: to get updates (recommended)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
-
-]]
-
 for i, v in next, game.CoreGui:GetChildren() do
     if v.Name:find("Vynixius UI Library") then
         v:Destroy()
@@ -13,24 +5,158 @@ for i, v in next, game.CoreGui:GetChildren() do
 end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 Library:Notify({
-    title = "Game unsupported - loading universal",
-    text = "Please join my discord and ask me nicely to add the game",
+    title = "Welcome",
+    text = "Please join our Discord thanks",
     duration = 10,
     color = Color3.fromRGB(0, 255, 0),
 }) 
 local Window = Library:AddWindow({
-	title = {"Universal", "the real#5282"},
+	title = {"Build to survive the Bombs!", "No.9#5768"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
-ESPbool = true
-_G.FillColor = Color3.fromRGB(255,0,0)
-_G.FillTransparency = 0.5
-_G.OutlineColor = Color3.fromRGB(1,1,1)
-_G.OutlineTransparency = 0
+local player123 = game.Players.LocalPlayer.Name
+local HumanTab = Window:AddTab("Human", {default = false})
+
+local HumanSection = HumanTab:AddSection("Human", {default = false})
+
+local Button = HumanSection:AddButton("Kill All E (pitchfork needed)", function()
+	local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+mouse.KeyDown:connect(function(key)
+    if key == "E" then
+        up = true
+        while up do
+            task.wait()
+            for i, v in pairs(game.Players:GetChildren()) do
+            if v.Team == game:GetService("Teams")["Bombs"] then
+                local tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+
+                local function CFrameBypass(tool,pos)
+                    local Arm = game.Players.LocalPlayer.Character['RightHand'].CFrame * CFrame.new(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0)
+                    local cframe = Arm:toObjectSpace(pos):inverse()
+                    tool.Parent = game.Players.LocalPlayer.Backpack
+                    tool.Grip = cframe
+                    tool.Parent = game.Players.LocalPlayer.Character
+                end
+                CFrameBypass(tool, v.Character.HumanoidRootPart.CFrame)
+                game.ReplicatedStorage.Events.CreateThrow:FireServer(CFrame.new(0,-10000,0), Workspace.player123["Pitchfork"])
+            end
+            end
+            end
+    end
+end)
+mouse.KeyUp:connect(function(key)
+    if key == "E" then
+        up = false
+    end
+end)
+end)
+function getAllPlayers()
+    local playertable =  {}
+    for i, v in next, game.Players:GetPlayers() do
+        table.insert(playertable, v.Name)
+    end
+    return playertable
+end
+
+local Dropdown = HumanSection:AddDropdown("Trap someone ez L", getAllPlayers(), {default = "Item1"}, function(selected)
+
+	playerPos = game.Players[selected].Character.HumanoidRootPart.Position
+    blockPos = playerPos
+    speed = 0.01
+
+    blockPos = playerPos + Vector3.new(0,-1,4.5)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(0,-1,-4.5)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(4.5,-1,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(-4.5,-1,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(0,3,-4.5)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(0,3,4.5)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(4.5,3,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(-4.5,3,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(-4.5,7,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+    blockPos = playerPos + Vector3.new(-0.5,7,0)
+    wait(speed)
+    game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", blockPos.x , blockPos.y, blockPos.z, 0, Workspace.Blocks)
+
+end)
+local Button = HumanSection:AddButton("enable R to Draw (enhance your free spirit)", function()
+	local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    local up = false
+
+    mouse.KeyDown:connect(function(key)
+    if key == "r" then
+        up = true
+            while up do
+            task.wait()
+                game.ReplicatedStorage.Events.PlacementEvent:InvokeServer("Sand", mouse.Hit.p.x, mouse.Hit.p.y, mouse.Hit.p.z, 0, Workspace.Blocks)
+            end
+    end
+    end)
+    mouse.KeyUp:connect(function(key)
+    if key == "r" then
+        up = false
+    end
+    end)
+end)
+
+-- Bomb
+local BombTab = Window:AddTab("Bomb", {default = false})
+local BombSection = BombTab:AddSection("while bomb", {default = false})
+function getAllPlayers()
+    local playertable =  {}
+    for i, v in next, game.Teams.Humans:GetPlayers() do
+        table.insert(playertable, v.Name)
+    end
+    return playertable
+end
+local Dropdown = BombSection:AddDropdown("Target", getAllPlayers(), {default = ""}, function(selected)
+    x = tostring(selected)
+    local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+
+        game.ReplicatedStorage.Events.Explode:FireServer()
+        task.wait(3.85)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
+end)
+game.Teams.Humans.PlayerAdded:Connect(function(player)
+    Dropdown:Add(player.Name)
+end)
+game.Teams.Humans.PlayerRemoved:Connect(function(player)
+    Dropdown:Remove(player.Name)
+end)
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -85,6 +211,10 @@ local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Fla
     end
 end)
 
+
+
+
+
 -- Teleports
 local TeleportTab = Window:AddTab("Teleports", {default = false})
 local TeleportSection = TeleportTab:AddSection("Players", {default = false})
@@ -99,6 +229,7 @@ function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
 local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+   
     x = Instance.new("Part")
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,0.5,0.5)
@@ -133,187 +264,21 @@ local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {defaul
         x:Destroy()
     end)
 end)
-game.Players.PlayerAdded:Connect(function(player)
-    Dropdown:Add(player.Name)
+game.Players.PlayerAdded:Connect(function()
+    Dropdown:ClearList()
+    Dropdown:SetList(getAllPlayers())
 end)
-game.Players.PlayerRemoving:Connect(function(player)
-    Dropdown:Remove(player.Name)
+game.Players.PlayerRemoving:Connect(function()
+    Dropdown:ClearList()
+    DropDown:SetList(getAllPlayers())
 end)
-
--- Visuals
-local VisualsTab = Window:AddTab("Visuals", {default = false})
-local ESPSection = VisualsTab:AddSection("ESP", {default = false})
-local Update
-
-local function ESP(Player) -- outside so its only defined once
-    local highlightClone = Instance.new("Highlight")
-    highlightClone.Adornee = Player.Character
-    highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
-    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    highlightClone.FillColor = _G.FillColor
-    highlightClone.FillTransparency = _G.FillTransparency
-    highlightClone.OutlineColor = _G.OutlineColor
-    highlightClone.OutlineTransparency = _G.OutlineTransparency
-    highlightClone.Name = "Highlight"
-    
-    Update = function()
-        highlightClone.FillColor = _G.FillColor
-        highlightClone.FillTransparency = _G.FillTransparency
-        highlightClone.OutlineColor = _G.OutlineColor
-        highlightClone.OutlineTransparency = _G.OutlineTransparency
-    end
-end
-
-local Toggle = ESPSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do -- for loop through players
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight") -- highlight for if check
-        if Highlight then -- if the highlight is in the character
-            Highlight.Enabled = bool -- set the highlight's enabled to bool so if its true or false then thats the enabled
-        elseif v ~= game:GetService("Players").LocalPlayer and bool then -- localplayer check and bool check to see if its enabled
-            ESP(v) -- add esp
-        end
-    end
-    ESPbool = bool
-end)
-game:GetService("Players").PlayerAdded:Connect(function(player)
-    if ESPbool then
-        e = player.Character or player.CharacterAdded:Wait()
-        ESP(player)
-    end
-end)
-
-game:GetService("Players").PlayerRemoving:Connect(function(player)
-    if ESPbool then
-        e = player.Character or player.CharacterAdded:Wait()
-        ESP(player)
-    end
-end)
-local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
-    _G.FillColor = color
-    
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Character = v.Character or v.CharacterAdded:Wait()
-        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
-        if Highlight then
-            Highlight.FillColor = _G.FillColor
-            Highlight.FillTransparency = _G.FillTransparency
-            Highlight.OutlineColor = _G.OutlineColor
-            Highlight.OutlineTransparency = _G.OutlineTransparency
-        end
-    end
-end)
-local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
-    _G.FillTransparency = text
-
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Character = v.Character or v.CharacterAdded:Wait()
-        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
-        if Highlight then
-            Highlight.FillColor = _G.FillColor
-            Highlight.FillTransparency = _G.FillTransparency
-            Highlight.OutlineColor = _G.OutlineColor
-            Highlight.OutlineTransparency = _G.OutlineTransparency
-        end
-    end
-end)
-
-local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
-    _G.OutlineColor = color
-
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Character = v.Character or v.CharacterAdded:Wait()
-        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
-        if Highlight then
-            Highlight.FillColor = _G.FillColor
-            Highlight.FillTransparency = _G.FillTransparency
-            Highlight.OutlineColor = _G.OutlineColor
-            Highlight.OutlineTransparency = _G.OutlineTransparency
-        end
-    end
-end)
-local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
-    _G.OutlineTransparency = text
-
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Character = v.Character or v.CharacterAdded:Wait()
-        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
-        if Highlight then
-            Highlight.FillColor = _G.FillColor
-            Highlight.FillTransparency = _G.FillTransparency
-            Highlight.OutlineColor = _G.OutlineColor
-            Highlight.OutlineTransparency = _G.OutlineTransparency
-        end
-    end
-end)
-
-
 
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
-local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
-local Button = JoinSection:AddButton("Rejoin", function()
-	JobId = game.JobId
-    PlaceId = game.PlaceId
-    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
-end)
-local Button = JoinSection:AddButton("Serverhop", function()
-	local TeleportService = game:GetService("TeleportService")
-local data = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Dsc&limit=100")).data
-
--- just to remove some servers roblox likely yeeted but still in their cache
-local c = 0
-for i = 1, #data do
-    local server = data[i-c]
-    if not server.playing then
-        table.remove(data, i-c)
-        c += 1
-    end
-end
-
-local function fyshuffle( tInput )
-    local tReturn = {}
-    for i = #tInput, 1, -1 do
-        local j = math.random(i)
-        tInput[i], tInput[j] = tInput[j], tInput[i]
-        table.insert(tReturn, tInput[i])
-    end
-    return tReturn
-end
-
-data = fyshuffle(data)
-
--- this is a horrible, idea, never do what I did here
--- horrible use-case for recursion...
-local function randomhop(data, failed)
-    failed = failed or {}
-    for _, s in pairs(data) do
-        local id = s.id
-        if not failed[id] and id ~= game.JobId then
-            if s.playing < s.maxPlayers then
-                local connection
-                connection = TeleportService.TeleportInitFailed:Connect(function(player, teleportResult, errorMessage)
-                    connection:Disconnect()
-                    failed[id] = true
-                    randomhop(data, failed)
-                end)
-                TeleportService:TeleportToPlaceInstance(game.PlaceId, id)
-                break
-            end
-        end
-    end
-end
-
-randomhop(data)
-end)
-
-local InfoLabel = JoinSection:AddLabel("Your Friend can get their JobId by executing the following script:")
-local ClipboardLabel = JoinSection:AddClipboardLabel("print(game.JobId)", function()
-	return "print(game.JobId)"
-end)
-local CreditsSection = MiscTab:AddSection("Credits", {default = false})
-local DualLabel = CreditsSection:AddDualLabel({"Vynixius", "providing the ui lib and discord utility"})
-local DualLabel = CreditsSection:AddDualLabel({"CGG (Me)", "everything else"})
-local Button = CreditsSection:AddButton("Join the Discord", function()
-	local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
-    Inviter.Join("https://discord.gg/qE95VSpvwW")
+local MiscSection = MiscTab:AddSection("funny stuff", {default = false})
+local Button = MiscSection:AddButton("Redeem all codes", function()
+	game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("15K")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("AMOGUS")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("WILBIMO")
+game:GetService("ReplicatedStorage").Events.RedeemCode:InvokeServer("BOOM")
 end)
