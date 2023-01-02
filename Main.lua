@@ -9,7 +9,6 @@ if Games[game.PlaceId] then
 	loadstring(game:HttpGet(Games[game.PlaceId]))()
 else
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Universal.lua"))()
-    })
 end
 
 -- [[ formatting by alyssa#2303 ]]--
