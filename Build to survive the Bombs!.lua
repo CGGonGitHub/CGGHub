@@ -1,3 +1,12 @@
+--[[
+	Made by the real#5282 // CGG // CoolGermanGuy
+	you can use the loadstring: to get updates (recommended)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
+	
+	Discord invite: https://discord.gg/qE95VSpvwW
+]]--
+
+
 for i, v in next, game.CoreGui:GetChildren() do
     if v.Name:find("Vynixius UI Library") then
         v:Destroy()
@@ -11,7 +20,7 @@ Library:Notify({
     color = Color3.fromRGB(0, 255, 0),
 }) 
 local Window = Library:AddWindow({
-	title = {"Build to survive the Bombs!", "No.9#5768"},
+	title = {"Build to survive the Bombs!", "the real#5282"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
