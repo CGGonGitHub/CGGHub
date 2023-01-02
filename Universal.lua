@@ -136,7 +136,9 @@ end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
-local function ESP(Player)
+local Update
+
+local function ESP(Player) -- outside so its only defined once
     local highlightClone = Instance.new("Highlight")
     highlightClone.Adornee = Player.Character
     highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
@@ -146,56 +148,78 @@ local function ESP(Player)
     highlightClone.OutlineColor = _G.OutlineColor
     highlightClone.OutlineTransparency = _G.OutlineTransparency
     highlightClone.Name = "Highlight"
-end
-
-local Toggle = ESPSection:AddToggle("ESP", {flag = "Toggle_Flag", default = false}, function(bool)
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
-        if Highlight then
-            Highlight.Enabled = bool
-        elseif v ~= game:GetService("Players").LocalPlayer and bool then
-            ESP(v)
-        end
-    end
-end)
-
-
-local Button = ESPSection:AddButton("ESP", function()
-	local function ESP(Player)
-        local highlightClone = Instance.new("Highlight")
-        highlightClone.Adornee = Player.Character
-        highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
-        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    
+    Update = function()
         highlightClone.FillColor = _G.FillColor
         highlightClone.FillTransparency = _G.FillTransparency
         highlightClone.OutlineColor = _G.OutlineColor
         highlightClone.OutlineTransparency = _G.OutlineTransparency
-        highlightClone.Name = "Highlight"
     end
-    
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        if v and v ~= game:GetService("Players").LocalPlayer then
-            ESP(v)
+end
+
+local Toggle = ESPSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do -- for loop through players
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight") -- highlight for if check
+        if Highlight then -- if the highlight is in the character
+            Highlight.Enabled = bool -- set the highlight's enabled to bool so if its true or false then thats the enabled
+        elseif v ~= game:GetService("Players").LocalPlayer and bool then -- localplayer check and bool check to see if its enabled
+            ESP(v) -- add esp
         end
     end
-    
-    game:GetService("Players").PlayerAdded:Connect(ESP)
-    
-    game:GetService("Players").PlayerRemoving:Connect(ESP)
 end)
+
 local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
-	_G.FillColor = color
+    _G.FillColor = color
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        if Highlight then
+            Highlight.FillColor = _G.FillColor
+            Highlight.FillTransparency = _G.FillTransparency
+            Highlight.OutlineColor = _G.OutlineColor
+            Highlight.OutlineTransparency = _G.OutlineTransparency
+        end
+    end
 end)
 local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
-	_G.FillTransparency = text
+    _G.FillTransparency = text
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        if Highlight then
+            Highlight.FillColor = _G.FillColor
+            Highlight.FillTransparency = _G.FillTransparency
+            Highlight.OutlineColor = _G.OutlineColor
+            Highlight.OutlineTransparency = _G.OutlineTransparency
+        end
+    end
 end)
 
 local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
-	_G.OutlineColor = color
+    _G.OutlineColor = color
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        if Highlight then
+            Highlight.FillColor = _G.FillColor
+            Highlight.FillTransparency = _G.FillTransparency
+            Highlight.OutlineColor = _G.OutlineColor
+            Highlight.OutlineTransparency = _G.OutlineTransparency
+        end
+    end
 end)
 local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
-	_G.OutlineTransparency = text
+    _G.OutlineTransparency = text
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        if Highlight then
+            Highlight.FillColor = _G.FillColor
+            Highlight.FillTransparency = _G.FillTransparency
+            Highlight.OutlineColor = _G.OutlineColor
+            Highlight.OutlineTransparency = _G.OutlineTransparency
+        end
+    end
 end)
+
+
+
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
 local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
