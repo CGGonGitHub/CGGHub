@@ -20,6 +20,12 @@ local Window = Library:AddWindow({
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
+Library:Notify({
+    title = "Game Unsupported",
+    text = "Heres the universal version",
+    duration = 10,
+    color = Color3.fromRGB(0, 255, 0),
+}) 
 _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0
 _G.OutlineColor = Color3.fromRGB(1,1,1)
