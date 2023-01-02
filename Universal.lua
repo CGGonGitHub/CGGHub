@@ -136,27 +136,25 @@ end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
-local Toggle = ESPSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
-    local function ESP(Player)
-        local highlightClone = Instance.new("Highlight")
-        highlightClone.Adornee = Player.Character
-        highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
-        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-        highlightClone.FillColor = _G.FillColor
-        highlightClone.FillTransparency = _G.FillTransparency
-        highlightClone.OutlineColor = _G.OutlineColor
-        highlightClone.OutlineTransparency = _G.OutlineTransparency
-        highlightClone.Name = "Highlight"
-    end
-	if bool then
-        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-            if v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
-                v.Character.HumanoidRootPart:FindFirstChild("Highlight").Enabled = not v.Character.HumanoidRootPart:FindFirstChild("Highlight").Enabled
-            else
-                if v and v ~= game:GetService("Players").LocalPlayer then
-                    ESP(v)
-                end
-            end
+local function ESP(Player)
+    local highlightClone = Instance.new("Highlight")
+    highlightClone.Adornee = Player.Character
+    highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
+    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    highlightClone.FillColor = _G.FillColor
+    highlightClone.FillTransparency = _G.FillTransparency
+    highlightClone.OutlineColor = _G.OutlineColor
+    highlightClone.OutlineTransparency = _G.OutlineTransparency
+    highlightClone.Name = "Highlight"
+end
+
+local Toggle = ESPSection:AddToggle("ESP", {flag = "Toggle_Flag", default = false}, function(bool)
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        if Highlight then
+            Highlight.Enabled = bool
+        elseif v ~= game:GetService("Players").LocalPlayer and bool then
+            ESP(v)
         end
     end
 end)
