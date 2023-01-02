@@ -6,6 +6,6 @@
                         Tapping Simulator                   https://www.roblox.com/games/9498006165/UPD18-Tapping-Simulator
                         Build to survive the Bombs!         https://www.roblox.com/games/5149673492/Build-to-survive-the-Bombs
                         Dig to OHIO                         https://www.roblox.com/games/11864536793/Dig-to-OHIO
-]]---
+]]--
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
