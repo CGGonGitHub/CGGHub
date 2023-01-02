@@ -20,6 +20,10 @@ local Window = Library:AddWindow({
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
+_G.FillColor = Color3.fromRGB(255,0,0)
+_G.FillTransparency = 0
+_G.OutlineColor = Color3.fromRGB(1,1,1)
+_G.OutlineTransparency = 0
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -132,62 +136,54 @@ end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
-local Button = ESPSection:AddButton("ESP", function()
-	local Players = game:GetService("Players"):GetChildren()
-    local RunService = game:GetService("RunService")
-    local highlight = Instance.new("Highlight")
-    highlight.Name = "Highlight"
-    for i, v in pairs(Players) do
-        repeat wait() until v.Character
-        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-            local highlightClone = highlight:Clone()
-            highlightClone.Adornee = v.Character
-            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            highlightClone.Name = "Highlight"
-            highlightClone.FillColor = _G.FillColor
-            highlightClone.FillTransparency = _G.FillTransparency
-            highlightClone.OutlineColor = _G.OutlineColor
-            highlightClone.OutlineTransparency = _G.OutlineTransparency
-        end
+local Toggle = ESPSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
+    local function ESP(Player)
+        local highlightClone = Instance.new("Highlight")
+        highlightClone.Adornee = Player.Character
+        highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
+        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlightClone.FillColor = _G.FillColor
+        highlightClone.FillTransparency = _G.FillTransparency
+        highlightClone.OutlineColor = _G.OutlineColor
+        highlightClone.OutlineTransparency = _G.OutlineTransparency
+        highlightClone.Name = "Highlight"
     end
-
-    game.Players.PlayerAdded:Connect(function(player)
-        repeat wait() until player.Character
-        if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-            local highlightClone = highlight:Clone()
-            highlightClone.Adornee = player.Character
-            highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
-            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            highlightClone.FillColor = _G.FillColor
-            highlightClone.FillTransparency = _G.FillTransparency
-            highlightClone.OutlineColor = _G.OutlineColor
-            highlightClone.OutlineTransparency = _G.OutlineTransparency
-            highlightClone.Name = "Highlight"
-        end    
-    end)
-
-    game.Players.PlayerRemoving:Connect(function(playerRemoved)
-        playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
-    end)
-
-    RunService.Heartbeat:Connect(function()
-        for i, v in pairs(Players) do
-            repeat wait() until v.Character
-            if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Hightlight") then
-                local highlightClone = highlight:Clone()
-                highlightClone.Adornee = v.Character
-                highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-                highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                highlightClone.FillColor = _G.FillColor
-                highlightClone.FillTransparency = _G.FillTransparency
-                highlightClone.OutlineColor = _G.OutlineColor
-                highlightClone.OutlineTransparency = _G.OutlineTransparency
-                highlightClone.Name = "Highlight"
-                task.wait()
+	if bool then
+        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
+                v.Character.HumanoidRootPart:FindFirstChild("Highlight").Enabled = not v.Character.HumanoidRootPart:FindFirstChild("Highlight").Enabled
+            else
+                if v and v ~= game:GetService("Players").LocalPlayer then
+                    ESP(v)
+                end
             end
         end
-    end)
+    end
+end)
+
+
+local Button = ESPSection:AddButton("ESP", function()
+	local function ESP(Player)
+        local highlightClone = Instance.new("Highlight")
+        highlightClone.Adornee = Player.Character
+        highlightClone.Parent = Player.Character:WaitForChild("HumanoidRootPart")
+        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlightClone.FillColor = _G.FillColor
+        highlightClone.FillTransparency = _G.FillTransparency
+        highlightClone.OutlineColor = _G.OutlineColor
+        highlightClone.OutlineTransparency = _G.OutlineTransparency
+        highlightClone.Name = "Highlight"
+    end
+    
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v and v ~= game:GetService("Players").LocalPlayer then
+            ESP(v)
+        end
+    end
+    
+    game:GetService("Players").PlayerAdded:Connect(ESP)
+    
+    game:GetService("Players").PlayerRemoving:Connect(ESP)
 end)
 local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
 	_G.FillColor = color
@@ -205,11 +201,61 @@ end)
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
 local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
-local Button = JoinSection:AddButton("Button", function()
+local Button = JoinSection:AddButton("Rejoin", function()
 	JobId = game.JobId
     PlaceId = game.PlaceId
     game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
 end)
+local Button = JoinSection:AddButton("Serverhop", function()
+	local TeleportService = game:GetService("TeleportService")
+local data = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Dsc&limit=100")).data
+
+-- just to remove some servers roblox likely yeeted but still in their cache
+local c = 0
+for i = 1, #data do
+    local server = data[i-c]
+    if not server.playing then
+        table.remove(data, i-c)
+        c += 1
+    end
+end
+
+local function fyshuffle( tInput )
+    local tReturn = {}
+    for i = #tInput, 1, -1 do
+        local j = math.random(i)
+        tInput[i], tInput[j] = tInput[j], tInput[i]
+        table.insert(tReturn, tInput[i])
+    end
+    return tReturn
+end
+
+data = fyshuffle(data)
+
+-- this is a horrible, idea, never do what I did here
+-- horrible use-case for recursion...
+local function randomhop(data, failed)
+    failed = failed or {}
+    for _, s in pairs(data) do
+        local id = s.id
+        if not failed[id] and id ~= game.JobId then
+            if s.playing < s.maxPlayers then
+                local connection
+                connection = TeleportService.TeleportInitFailed:Connect(function(player, teleportResult, errorMessage)
+                    connection:Disconnect()
+                    failed[id] = true
+                    randomhop(data, failed)
+                end)
+                TeleportService:TeleportToPlaceInstance(game.PlaceId, id)
+                break
+            end
+        end
+    end
+end
+
+randomhop(data)
+end)
+
 local InfoLabel = JoinSection:AddLabel("Your Friend can get their JobId by executing the following script:")
 local ClipboardLabel = JoinSection:AddClipboardLabel("print(game.JobId)", function()
 	return "print(game.JobId)"
