@@ -1,3 +1,12 @@
+--[[
+	Made by the real#5282 // CGG // CoolGermanGuy
+	you can use the loadstring: to get updates (recommended)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
+	
+	Discord invite: https://discord.gg/qE95VSpvwW
+]]--
+
+
 for i, v in next, game.CoreGui:GetChildren() do
     if v.Name:find("Vynixius UI Library") then
         v:Destroy()
@@ -7,7 +16,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
-	title = {"Tapping Simulator", "No.8#9194"},
+	title = {"Tapping Simulator", "the real#5282"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
