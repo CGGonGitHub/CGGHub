@@ -203,7 +203,7 @@ local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonemp
     end
 end)
 
-local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
+local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(1, 1, 1)}, function(color)
     _G.OutlineColor = color
 
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
