@@ -170,8 +170,10 @@ end)
 
 local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
     _G.FillColor = color
+    
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        local Character = v.Character or v.CharacterAdded:Wait()
+        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
         if Highlight then
             Highlight.FillColor = _G.FillColor
             Highlight.FillTransparency = _G.FillTransparency
@@ -182,8 +184,10 @@ local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0,
 end)
 local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
     _G.FillTransparency = text
+
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        local Character = v.Character or v.CharacterAdded:Wait()
+        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
         if Highlight then
             Highlight.FillColor = _G.FillColor
             Highlight.FillTransparency = _G.FillTransparency
@@ -195,8 +199,10 @@ end)
 
 local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
     _G.OutlineColor = color
+
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        local Character = v.Character or v.CharacterAdded:Wait()
+        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
         if Highlight then
             Highlight.FillColor = _G.FillColor
             Highlight.FillTransparency = _G.FillTransparency
@@ -207,8 +213,10 @@ local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255,
 end)
 local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
     _G.OutlineTransparency = text
+    
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        local Highlight = v.Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
+        local Character = v.Character or v.CharacterAdded:Wait()
+        local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
         if Highlight then
             Highlight.FillColor = _G.FillColor
             Highlight.FillTransparency = _G.FillTransparency
