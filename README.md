@@ -6,3 +6,5 @@
   Dont, worry the discord invite can be found under the <i>*<b>**Misc**</b>*</i> Tab in every ui under the <i>*<b>**Credits**</b>*</i> Credits Section. Or if you need it quick, here is it: [real Discord!!!!](https://discord.gg/qE95VSpvwW)
 
         ![](https://media.discordapp.net/attachments/1058473903636353085/1059299318823129190/image.png)
+
+![](https://media.discordapp.net/attachments/1058473903636353085/1059300212646092810/image.png)
