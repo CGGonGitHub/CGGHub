@@ -1,3 +1,12 @@
+--[[
+	Made by the real#5282 // CGG // CoolGermanGuy
+	you can use the loadstring: to get updates (recommended)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
+	
+	Discord invite: https://discord.gg/qE95VSpvwW
+]]--
+
+
 local Games = {
 	[537413528] = "https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Build%20A%20Boat%20For%20Treasure.lua", -- Build A Boat For Treasure
 	[5149673492] = "https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Build%20to%20survive%20the%20Bombs!.lua", -- Build To Survive The Bombs!
