@@ -13,7 +13,7 @@ for i, v in next, game.CoreGui:GetChildren() do
 end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
-	title = {"Universal", "the real#5282"},
+	title = {"Dig to OHIO", "the real#5282"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
