@@ -1,10 +1,10 @@
 --[[
 	Made by the real#5282 // CGG // CoolGermanGuy
-	Unprotected by nothing v2
 	you can use the loadstring: to get updates (recommended)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
-
-]]
+	
+	Discord invite: https://discord.gg/qE95VSpvwW
+]]--
 
 for i, v in next, game.CoreGui:GetChildren() do
     if v.Name:find("Vynixius UI Library") then
