@@ -27,7 +27,7 @@ Library:Notify({
     color = Color3.fromRGB(0, 255, 0),
 }) 
 _G.FillColor = Color3.fromRGB(255,0,0)
-_G.FillTransparency = 0
+_G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
 _G.OutlineTransparency = 0
 -- Localplayer
