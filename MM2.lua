@@ -1,12 +1,11 @@
 --[[
-	Made by No.8#9194 // CGG // CoolGermanGuy
-	Unprotected by nothing v2
-
+	Made by the real#5282 // CGG // CoolGermanGuy
 	you can use the loadstring: to get updates (recommended)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
 	
-	Discord invite: https://discord.gg/dpy8s5dbPZ
-]]
+	Discord invite: https://discord.gg/qE95VSpvwW
+]]--
+
 
 for i, v in next, game.CoreGui:GetChildren() do
     if v.Name:find("Vynixius UI Library") then
@@ -16,7 +15,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
-	title = {"Murder Mystery 2", "No.8#9194"},
+	title = {"Murder Mystery 2", "the real#5282"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
