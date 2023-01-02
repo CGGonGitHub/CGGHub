@@ -20,12 +20,7 @@ local Window = Library:AddWindow({
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
-Library:Notify({
-    title = "Game Unsupported",
-    text = "Heres the universal version",
-    duration = 10,
-    color = Color3.fromRGB(0, 255, 0),
-}) 
+ESPbool = true
 _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
@@ -172,8 +167,21 @@ local Toggle = ESPSection:AddToggle("Toggle", {flag = "Toggle_Flag", default = f
             ESP(v) -- add esp
         end
     end
+    ESPbool = bool
+end)
+game:GetService("Players").PlayerAdded:Connect(function(player)
+    if ESPbool then
+        e = player.Character or player.CharacterAdded:Wait()
+        ESP(player)
+    end
 end)
 
+game:GetService("Players").PlayerRemoving:Connect(function(player)
+    if ESPbool then
+        e = player.Character or player.CharacterAdded:Wait()
+        ESP(player)
+    end
+end)
 local Picker = ESPSection:AddPicker("FillColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
     _G.FillColor = color
     
@@ -203,7 +211,7 @@ local Box = ESPSection:AddBox("FillTransparency (0, 0.1, 0.2,... 1)", {fireonemp
     end
 end)
 
-local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(1, 1, 1)}, function(color)
+local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(255, 0, 0)}, function(color)
     _G.OutlineColor = color
 
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -219,7 +227,7 @@ local Picker = ESPSection:AddPicker("OutlineColor", {color = Color3.fromRGB(1, 1
 end)
 local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireonempty = true}, function(text)
     _G.OutlineTransparency = text
-    
+
     for i,v in pairs(game:GetService("Players"):GetPlayers()) do
         local Character = v.Character or v.CharacterAdded:Wait()
         local Highlight = Character:WaitForChild("HumanoidRootPart"):FindFirstChild("Highlight")
