@@ -29,7 +29,7 @@ _G.OutlineTransparency = 0
 local MainTab = Window:AddTab("Main", {default = false})
 local Section = MainTab:AddSection("Main stuff", {default = false})
 local Button = Section:AddButton("Teleport to bottom", function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-562, -2463, 37)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-562, -2400, 37)
 end)
 local Button = Section:AddButton("Remove terrain", function()
 	workspace.Terrain:Clear()
