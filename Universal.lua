@@ -31,6 +31,8 @@ _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
 _G.OutlineTransparency = 0
+_G.spam = "hello, this is the spammer from CGG's ui"
+_G.spamenabled = true
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -139,7 +141,25 @@ end)
 game.Players.PlayerRemoving:Connect(function(player)
     Dropdown:Remove(player.Name)
 end)
-
+-- Features
+local FeaturesTab = Window:AddTab("Features", {default = false})
+local SpamSection = FeaturesTab:AddSection("Spam", {default = false})
+local Box = SpamSection:AddBox("text to spam", {fireonempty = true}, function(text)
+	_G.spam = text
+    print(_G.spam)
+end)
+local function spam()
+    _G.spamenabled = not _G.spamenabled
+    while _G.spamenabled do
+        for count = 0, 6, 1 do
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam, "All")
+        end
+        task.wait(16)
+    end
+end
+local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
+    spam()
+end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
