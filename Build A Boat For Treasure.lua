@@ -231,7 +231,7 @@ local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,647)
     end
 end)
-local PlayerSection = TeleportTab:AddSection("Players", {default = false})
+local PlayerTPSection = TeleportTab:AddSection("Players", {default = false})
 function getAllPlayers()
     local playertable =  {}
     for i, v in next, game.Players:GetPlayers() do
@@ -242,7 +242,7 @@ end
 function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
-local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+local Dropdown = PlayerTPSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
     x = Instance.new("Part")
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,0.5,0.5)
