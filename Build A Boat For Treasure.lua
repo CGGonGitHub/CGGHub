@@ -205,8 +205,8 @@ local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireon
     end
 end)
 -- Teleports
-local Teleports = Window:AddTab("Teleports", {default = false})
-local TeleportSection = Misc:AddSection("Teleports", {default = false})
+local TeleportTab = Window:AddTab("Teleports", {default = false})
+local TeleportSection = Teleport:AddSection("Teams", {default = false})
 local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black", "Team Red", "Team Green", "Team Blue", "Team Yellow", "Team Pink"}, {default = ""}, function(selected)
 	print(selected)
 	if selected == "Team White" then 
@@ -231,8 +231,7 @@ local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,647)
     end
 end)
-local TeleportTab = Window:AddTab("Teleports", {default = false})
-local TeleportSection = TeleportTab:AddSection("Players", {default = false})
+local PlayerSection = TeleportTab:AddSection("Players", {default = false})
 function getAllPlayers()
     local playertable =  {}
     for i, v in next, game.Players:GetPlayers() do
