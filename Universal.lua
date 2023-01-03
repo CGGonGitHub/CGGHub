@@ -33,6 +33,7 @@ _G.OutlineColor = Color3.fromRGB(1,1,1)
 _G.OutlineTransparency = 0
 _G.spam = "hello, this is the spammer from CGG's ui"
 _G.spamenabled = true
+_G.loopteleportenabled = true
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -160,6 +161,22 @@ end
 local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
     spam()
 end)
+local LoopTeleportSection = FeaturesTab:AddSection("Loop teleport", {default = false})
+
+local Dropdown = LoopTeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+    x = selected
+end)
+local function loopteleport()
+    _G.loopteleportenabled = not _G.loopteleportenabled
+    while _G.loopteleportenabled do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
+        task.wait()
+    end
+end
+local Toggle = LoopTeleportSection:AddToggle("Loop teleport", {flag = "Toggle_Flag", default = false}, function(bool)
+    loopteleport()
+end)
+
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
