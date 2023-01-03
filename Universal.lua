@@ -163,7 +163,7 @@ local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = fa
 end)
 local LoopTeleportSection = FeaturesTab:AddSection("Loop teleport", {default = false})
 local Dropdown = LoopTeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
-    x = selected
+    xyz = selected
 end)
 game.Players.PlayerAdded:Connect(function(player)
     Dropdown:Add(player.Name)
@@ -174,7 +174,7 @@ end)
 local function loopteleport()
     _G.loopteleportenabled = not _G.loopteleportenabled
     while _G.loopteleportenabled do
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[x].Character.HumanoidRootPart.CFrame
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[xyz].Character.HumanoidRootPart.CFrame
         task.wait()
     end
 end
