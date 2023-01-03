@@ -280,6 +280,23 @@ local Button = AmountSection:AddButton("Buy it!", function()
 end)
 -- Utilities
 local Utilities = Window:AddTab("Utilities", {default = false})
+local SpamSection = Utilities:AddSection("Spam", {default = false})
+local Box = SpamSection:AddBox("text to spam", {fireonempty = true}, function(text)
+	_G.spam = text
+    print(_G.spam)
+end)
+local function spam()
+    _G.spamenabled = not _G.spamenabled
+    while _G.spamenabled do
+        for count = 0, 6, 1 do
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam, "All")
+        end
+        task.wait(16)
+    end
+end
+local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
+    spam()
+end)
 local UtilitiesSection = Utilities:AddSection("Utilities", {default = false})
 local Button = UtilitiesSection:AddButton("Remove Water", function()
 	for i, v in next, game.workspace:GetDescendants() do
