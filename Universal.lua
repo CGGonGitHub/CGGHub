@@ -26,7 +26,6 @@ local Window = Library:AddWindow({
 	key = Enum.KeyCode.RightControl,
 	default = true
 })
-ESPbool = true
 _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
@@ -34,6 +33,7 @@ _G.OutlineTransparency = 0
 _G.spam = "hello, this is the spammer from CGG's ui"
 _G.spamenabled = true
 _G.loopteleportenabled = true
+ESPbool = false
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
