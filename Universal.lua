@@ -64,6 +64,15 @@ local Slider = Local_PlayerSection:AddSlider("Gravity", 1, 500, game.Workspace.G
 		game.Workspace.Gravity = previousGravity
 	end
 end)
+local previousFOV = game.Workspace.CurrentCamera.FieldOfView
+local FOVSlider = Local_PlayerSection:AddSlider("FOV", 1, 120, game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	if bool then
+		game.Workspace.CurrentCamera.FieldOfView = val
+	end
+	if bool == false then
+		game.Workspace.CurrentCamera.FieldOfView = previousFOV
+	end
+end)
 local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Flag", default = false}, function(bool4)
     local Players = game:GetService("Players")
     local Workspace = game:GetService("Workspace")
