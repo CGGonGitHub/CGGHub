@@ -207,29 +207,17 @@ end)
 -- Teleports
 local TeleportTab = Window:AddTab("Teleports", {default = false})
 local TeleportSection = TeleportTab:AddSection("Teams", {default = false})
+local Teams = {
+    ["Team White"]  = CFrame.new(-50,81,-564),
+    ["Team Red"]    = CFrame.new(440,81,-64),
+    ["Team Black"]  = CFrame.new(-547,81,-69),
+    ["Team Blue"]   = CFrame.new(440,81,300),
+    ["Team Green"]  = CFrame.new(-547,81,294),
+    ["Team Yellow"] = CFrame.new(-547,81,641),
+    ["Team Pink"]   = CFrame.new(440,81,647)
+}
 local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black", "Team Red", "Team Green", "Team Blue", "Team Yellow", "Team Pink"}, {default = ""}, function(selected)
-	print(selected)
-	if selected == "Team White" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50,81,-564)
-		end
-	if selected == "Team Red" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,-64)
-	end
-	if selected == "Team Blue" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,300)
-	end
-	if selected == "Team Black" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-547,81,-69)
-	end
-	if selected == "Team Green" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-547,81,294)
-	end
-	if selected == "Team Yellow" then 
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-547,81,641)
-	end
-	if selected == "Team Pink" then 
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,647)
-    end
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Teams[selected]
 end)
 local PlayerTPSection = TeleportTab:AddSection("Players", {default = false})
 function getAllPlayers()
