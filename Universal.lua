@@ -162,9 +162,14 @@ local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = fa
     spam()
 end)
 local LoopTeleportSection = FeaturesTab:AddSection("Loop teleport", {default = false})
-
 local Dropdown = LoopTeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
     x = selected
+end)
+game.Players.PlayerAdded:Connect(function(player)
+    Dropdown:Add(player.Name)
+end)
+game.Players.PlayerRemoving:Connect(function(player)
+    Dropdown:Remove(player.Name)
 end)
 local function loopteleport()
     _G.loopteleportenabled = not _G.loopteleportenabled
