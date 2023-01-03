@@ -206,7 +206,7 @@ local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireon
 end)
 -- Teleports
 local TeleportTab = Window:AddTab("Teleports", {default = false})
-local TeleportSection = Teleport:AddSection("Teams", {default = false})
+local TeleportSection = TeleportTab:AddSection("Teams", {default = false})
 local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black", "Team Red", "Team Green", "Team Blue", "Team Yellow", "Team Pink"}, {default = ""}, function(selected)
 	print(selected)
 	if selected == "Team White" then 
