@@ -204,8 +204,8 @@ local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireon
         end
     end
 end)
--- Misc
-local Misc = Window:AddTab("Misc", {default = false})
+-- Teleports
+local Teleports = Window:AddTab("Teleports", {default = false})
 local TeleportSection = Misc:AddSection("Teleports", {default = false})
 local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black", "Team Red", "Team Green", "Team Blue", "Team Yellow", "Team Pink"}, {default = ""}, function(selected)
 	print(selected)
@@ -231,18 +231,58 @@ local Dropdown = TeleportSection:AddDropdown("Teams", {"Team White", "Team Black
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(440,81,647)
     end
 end)
+local TeleportTab = Window:AddTab("Teleports", {default = false})
+local TeleportSection = TeleportTab:AddSection("Players", {default = false})
 function getAllPlayers()
-	local playertable =  {}
-	for i, v in next, game.Players:GetPlayers() do
-		table.insert(playertable, v.Name)
-	end
-	return playertable
+    local playertable =  {}
+    for i, v in next, game.Players:GetPlayers() do
+        table.insert(playertable, v.Name)
+    end
+    return playertable
 end
 function Teleport(CFrame)
-	game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
+    game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
 local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
-	Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
+    x = Instance.new("Part")
+    x.Shape = Enum.PartType.Cylinder
+    x.Size = Vector3.new(1000,0.5,0.5)
+    x.Material = Enum.Material.Neon
+    x.Color = Color3.fromRGB(0, 225, 255)
+    x.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    x.Rotation = Vector3.new(0,0,90)
+    x.CanCollide = false
+    x.Anchored = true
+    x.Parent = game.Workspace
+    local TS = game:GetService("TweenService")
+    local Anim = TS:Create(x, TweenInfo.new(1), {Size=Vector3.new(1000,5,5)})
+    Anim:Play()
+    task.wait(1)
+    x:Destroy()
+    Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
+    x = Instance.new("Part")
+    
+    x.Shape = Enum.PartType.Cylinder
+    x.Size = Vector3.new(1000,5,5)
+    x.Material = Enum.Material.Neon
+    x.Color = Color3.fromRGB(0, 225, 255)
+    x.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    x.Rotation = Vector3.new(0,0,90)
+    x.CanCollide = false
+    x.Parent = game.Workspace
+    x.Anchored = true
+    local TS = game:GetService("TweenService")
+    local Anim = TS:Create(x, TweenInfo.new(0.5), {Size=Vector3.new(1000,0.5,0.5)})
+    Anim:Play()
+    Anim.Completed:Connect(function()
+        x:Destroy()
+    end)
+end)
+game.Players.PlayerAdded:Connect(function(player)
+    Dropdown:Add(player.Name)
+end)
+game.Players.PlayerRemoving:Connect(function(player)
+    Dropdown:Remove(player.Name)
 end)
 -- Trolling
 local Trolling = Window:AddTab("Trolling", {default = false})
