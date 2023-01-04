@@ -34,6 +34,7 @@ _G.spam = "hello, this is the spammer from CGG's ui"
 _G.spamenabled = true
 _G.loopteleportenabled = true
 ESPbool = false
+VU = game:GetService("VirtualUser")
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -114,7 +115,7 @@ end
 function Teleport(CFrame)
     game.Players.LocalPlayer.Character.PrimaryPart:PivotTo(CFrame)
 end
-local Dropdown = TeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
+local Dropdown = TeleportSection:AddDropdown("Player to teleport to", getAllPlayers(), {default = ""}, function(selected)
     x = Instance.new("Part")
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,0.5,0.5)
@@ -155,26 +156,7 @@ end)
 game.Players.PlayerRemoving:Connect(function(player)
     Dropdown:Remove(player.Name)
 end)
--- Features
-local FeaturesTab = Window:AddTab("Features", {default = false})
-local SpamSection = FeaturesTab:AddSection("Spam", {default = false})
-local Box = SpamSection:AddBox("text to spam", {fireonempty = true}, function(text)
-	_G.spam = text
-    print(_G.spam)
-end)
-local function spam()
-    _G.spamenabled = not _G.spamenabled
-    while _G.spamenabled do
-        for count = 0, 6, 1 do
-            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam, "All")
-        end
-        task.wait(16)
-    end
-end
-local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
-    spam()
-end)
-local LoopTeleportSection = FeaturesTab:AddSection("Loop teleport", {default = false})
+local LoopTeleportSection = TeleportTab:AddSection("Loop teleport", {default = false})
 local Dropdown = LoopTeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
     xyz = selected
 end)
@@ -195,6 +177,37 @@ local Toggle = LoopTeleportSection:AddToggle("Loop teleport", {flag = "Toggle_Fl
     loopteleport()
 end)
 
+-- Features
+local FeaturesTab = Window:AddTab("Features", {default = false})
+local SpamSection = FeaturesTab:AddSection("Spam", {default = false})
+local Box = SpamSection:AddBox("text to spam", {fireonempty = true}, function(text)
+	_G.spam = text
+    print(_G.spam)
+end)
+local function spam()
+    _G.spamenabled = not _G.spamenabled
+    while _G.spamenabled do
+        for count = 0, 6, 1 do
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam, "All")
+        end
+        task.wait(16)
+    end
+end
+local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
+    spam()
+end)
+local AntiafkSection = FeaturesTab:AddSection("Anti AFK", {default = false})
+local Toggle = AntiafkSection:AddToggle("no more idle", {flag = "Toggle_Flag", default = false}, function(bool)
+	if bool then
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            VU:Button1Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            VU:Button1Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    elseif not bool then
+        return
+    end
+end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
