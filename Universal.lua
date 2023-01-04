@@ -19,7 +19,7 @@ Library:Notify({
     color = Color3.fromRGB(0, 255, 0),
 }) 
 local Window = Library:AddWindow({
-	title = {"Universal", "the real#5282"},
+	title = {"Universal", "thereal#5282"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
@@ -41,44 +41,41 @@ local previousWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
-	end
-	if bool == false then
+    elseif not bool then
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = previousWalkSpeed
 	end
 end)
 local previousJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
-local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, game.Players.LocalPlayer.Character.Humanoid.JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val2, bool2)
-	if bool2 then
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = val2
-	end
-	if bool2 == false then
+local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, game.Players.LocalPlayer.Character.Humanoid.JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	if bool then
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = val
+    elseif not bool then
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = previousJumpPower
 	end
 end)
 local previousGravity = game.Workspace.Gravity
-local Slider = Local_PlayerSection:AddSlider("Gravity", 1, 500, game.Workspace.Gravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val3, bool3)
-	if bool3 then
-		game.Workspace.Gravity = val3
-	end
-	if bool3 == false then
+local Slider = Local_PlayerSection:AddSlider("Gravity", 1, 500, game.Workspace.Gravity, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	if bool then
+		game.Workspace.Gravity = val
+    elseif not bool then
 		game.Workspace.Gravity = previousGravity
 	end
 end)
 local previousFOV = game.Workspace.CurrentCamera.FieldOfView
-local FOVSlider = Local_PlayerSection:AddSlider("FOV", 1, 120, game.Workspace.CurrentCamera.FieldOfView, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val4, bool)
+local FOVSlider = Local_PlayerSection:AddSlider("FOV", 1, 120, game.Workspace.CurrentCamera.FieldOfView, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
-		game.Workspace.CurrentCamera.FieldOfView = val4
+		game.Workspace.CurrentCamera.FieldOfView = val
 	end
 	if bool == false then
 		game.Workspace.CurrentCamera.FieldOfView = previousFOV
 	end
 end)
-local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Flag", default = false}, function(bool4)
+local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Flag", default = false}, function(bool)
     local Players = game:GetService("Players")
     local Workspace = game:GetService("Workspace")
     local Plr = Players.LocalPlayer
     
-    if bool4 == true then
+    if bool == true then
         Clipon = true
         Stepped = game:GetService("RunService").Stepped:Connect(function()
             if not Clipon == false then
@@ -92,8 +89,15 @@ local NoClipToggle = Local_PlayerSection:AddToggle("Noclip", {flag = "Toggle_Fla
                 Stepped:Disconnect()
             end
         end)
-    elseif bool4 == false then
+    elseif bool == false then
         Clipon = false
+    end
+end)
+local Toggle = Local_PlayerSection:AddToggle("Anchored", {flag = "Toggle_Flag", default = false}, function(bool)
+	if bool then 
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+    elseif not bool then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
     end
 end)
 
@@ -301,6 +305,13 @@ end)
 
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
+local UISettingsSection = MiscTab:AddSection("UI Settings", {default = false})
+local Picker = UISettingsSection:AddPicker("UI Color", {color = Color3.fromRGB(0, 255, 0)}, function(color)
+	Window:SetAccent(color)
+end)
+local Button =UISettingsSection:AddButton("Destroy UI", function()
+	game.CoreGui["Vynixius UI Library"]:Destroy()
+end)
 local JoinSection = MiscTab:AddSection("Rejoin & Co", {default = false})
 local Button = JoinSection:AddButton("Rejoin", function()
 	JobId = game.JobId
@@ -363,7 +374,7 @@ local ClipboardLabel = JoinSection:AddClipboardLabel("print(game.JobId)", functi
 end)
 local CreditsSection = MiscTab:AddSection("Credits", {default = false})
 local DualLabel = CreditsSection:AddDualLabel({"Vynixius", "providing the ui lib and discord utility"})
-local DualLabel = CreditsSection:AddDualLabel({"CGG (Me)", "everything else"})
+local DualLabel = CreditsSection:AddDualLabel({"thereal#5282", "everything else"})
 local Button = CreditsSection:AddButton("Join the Discord", function()
 	local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
     Inviter.Join("https://discord.gg/qE95VSpvwW")
