@@ -198,12 +198,12 @@ local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = fa
 end)
 local AntiafkSection = FeaturesTab:AddSection("Anti AFK", {default = false})
 local function antiafk()
-    VU:Button1Down(Vector2.zero, workspace.CurrentCamera.CFrame) -- you can use Vector2.zero as shorthand for (0, 0)
+    VU:Button2Down(Vector2.zero, workspace.CurrentCamera.CFrame) -- you can use Vector2.zero as shorthand for (0, 0)
     task.wait(1)
-    VU:Button1Up(Vector2.zero, workspace.CurrentCamera.CFrame)
+    VU:Button2Up(Vector2.zero, workspace.CurrentCamera.CFrame)
 end
 local afkConnection
-local Toggle = AntiafkSection:AddToggle("no more idle", {flag = "Toggle_Flag", default = false}, function(bool)
+local Toggle = AntiafkSection:AddToggle("no more idle 20 min kick >:(", {flag = "Toggle_Flag", default = false}, function(bool)
 if bool then
     afkConnection = game.Players.LocalPlayer.Idled:Connect(antiafk)
 else 
