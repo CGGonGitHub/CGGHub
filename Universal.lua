@@ -38,6 +38,8 @@ lp = game:GetService("Players").LocalPlayer
 VU = game:GetService("VirtualUser")
 Mouses = lp:GetMouse()
 cmdm = Mouses
+speedofthefly = 1
+speedofthevfly = 1
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
@@ -104,15 +106,14 @@ mouse = Mouses
 
 function sFLY(vfly)
 	FLYING = false
-	speedofthefly = 1
-	speedofthevfly = 1
+
 	while not lp or not lp.Character or not lp.Character:FindFirstChild('HumanoidRootPart') or not lp.Character:FindFirstChild('Humanoid') or not cmdm do
 		 wait()
 	end 
 	local T = lp.Character.HumanoidRootPart
 	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
 	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-	local SPEED = 0
+	local SPEED = 3
 	local function FLY()
 		FLYING = true
 		local BG = Instance.new('BodyGyro', T)
@@ -208,16 +209,18 @@ function sFLY(vfly)
 	FLY()
 end
 
-local FlyToggle = Local_PlayerSection:AddToggle("Fly", {flag = "Toggle_Flag", default = false}, function(bool)
-	if bool then
-        print("fly")
+local FlySlider = Local_PlayerSection:AddSlider("Fly", 1, 10, 1, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+
+    if bool then
+        print(val)
+        speedofthefly = val
+        speedofthevfly = val
         sFLY(vfly)
     elseif not bool then
         FLYING = false
         lp.Character.Humanoid.PlatformStand = false
     end
 end)
-
 local AnchoredToggle = Local_PlayerSection:AddToggle("Anchored", {flag = "Toggle_Flag", default = false}, function(bool)
 	if bool then 
         lp.Character.HumanoidRootPart.Anchored = true
