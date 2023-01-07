@@ -8,4 +8,4 @@
                         Dig to OHIO                         https://www.roblox.com/games/11864536793/Dig-to-OHIO
 ]]--
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/Loader/main/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Loader.lua"))()
