@@ -16,7 +16,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 local Window = Library:AddWindow({
-	title = {"Tapping Simulator", "the real#5282"},
+	title = {"Tapping Simulator", "CGGHub"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
