@@ -30,8 +30,9 @@ _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
 _G.OutlineTransparency = 0
-_G.spam = "hello, this is the spammer from CGG's ui"
+_G.spam = "hello, this is the spammer from CGG's hub"
 _G.spamenabled = true
+_G.infinitespamenabled = true
 _G.loopteleportenabled = true
 ESPbool = false
 lp = game:GetService("Players").LocalPlayer
@@ -103,7 +104,7 @@ local lp = game.Players.LocalPlayer
 Mouses = lp:GetMouse()
 mouse = Mouses
 
-
+local Update
 function sFLY(vfly)
 	FLYING = false
 
@@ -207,14 +208,17 @@ function sFLY(vfly)
 		end
 	end)
 	FLY()
+    Update = function()
+        speedofthefly = flyval
+        speedofthevfly = flyval
+    end
 end
 
-local FlySlider = Local_PlayerSection:AddSlider("Fly", 1, 10, 1, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+local FlySlider = Local_PlayerSection:AddSlider("Fly", 1, 10, 1, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(flyval, bool)
 
     if bool then
-        print(val)
-        speedofthefly = val
-        speedofthevfly = val
+        speedofthefly = flyval
+        speedofthevfly = flyval
         sFLY(vfly)
     elseif not bool then
         FLYING = false
@@ -306,7 +310,7 @@ end)
 
 -- Features
 local FeaturesTab = Window:AddTab("Features", {default = false})
-local SpamSection = FeaturesTab:AddSection("Spam", {default = false})
+local SpamSection = FeaturesTab:AddSection("Chat Spam", {default = false})
 local Box = SpamSection:AddBox("text to spam", {fireonempty = true}, function(text)
 	_G.spam = text
     print(_G.spam)
@@ -320,8 +324,18 @@ local function spam()
         task.wait(16)
     end
 end
-local Toggle = SpamSection:AddToggle("Spam", {flag = "Toggle_Flag", default = false}, function(bool)
+local Toggle = SpamSection:AddToggle("spam", {flag = "Toggle_Flag", default = false}, function(bool)
     spam()
+end)
+local function infinitespam()
+    _G.infinitespamenabled = not _G.infinitespamenabled
+    while _G.infinitespamenabled do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam,"All")
+        task.wait(2.15)
+    end
+end
+local Toggle = SpamSection:AddToggle("spam v2", {flag = "Toggle_Flag", default = false}, function(bool)
+	infinitespam()
 end)
 local AntiafkSection = FeaturesTab:AddSection("Anti AFK", {default = false})
 local function antiafk()
@@ -340,7 +354,7 @@ end)
 -- Visuals
 local VisualsTab = Window:AddTab("Visuals", {default = false})
 local ESPSection = VisualsTab:AddSection("ESP", {default = false})
-local Update
+local Update2
 
 local function ESP(Player) -- outside so its only defined once
     local highlightClone = Instance.new("Highlight")
@@ -353,7 +367,7 @@ local function ESP(Player) -- outside so its only defined once
     highlightClone.OutlineTransparency = _G.OutlineTransparency
     highlightClone.Name = "Highlight"
     
-    Update = function()
+    Update2 = function()
         highlightClone.FillColor = _G.FillColor
         highlightClone.FillTransparency = _G.FillTransparency
         highlightClone.OutlineColor = _G.OutlineColor
