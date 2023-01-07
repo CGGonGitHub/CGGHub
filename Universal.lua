@@ -19,7 +19,7 @@ Library:Notify({
     color = Color3.fromRGB(0, 255, 0),
 }) 
 local Window = Library:AddWindow({
-	title = {"Universal", "thereal#5282"},
+	title = {"Universal", "CGGHub"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
@@ -30,7 +30,7 @@ _G.FillColor = Color3.fromRGB(255,0,0)
 _G.FillTransparency = 0.5
 _G.OutlineColor = Color3.fromRGB(1,1,1)
 _G.OutlineTransparency = 0
-_G.spam = "hello, this is the spammer from CGG's hub"
+_G.spam = "CGGHub on top!"
 _G.spamenabled = true
 _G.infinitespamenabled = true
 _G.loopteleportenabled = true
