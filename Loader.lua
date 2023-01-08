@@ -14,7 +14,8 @@ local Games = {
 	[9498006165] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Tapping%20Simulator.lua", -- Tapping Simulator
 	[6429911702] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Master's%20Difficulty%20Chart%20Obby.lua", -- Master's Difficulty Chart Obby
 	[8052461606] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/HD's%20Difficulty%20Chart%20Obby%202.lua", -- ✨ HD's Difficulty Chart Obby 2 ✨
-	[10480595198] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Increasing%20Impossible%20Stud%20Wall%20Obby.lua", -- ✨Increasing Impossible Stud Wall Obby	
+	[10480595198] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Increasing%20Impossible%20Stud%20Wall%20Obby.lua", -- ✨Increasing Impossible Stud Wall Obby
+	[6289365295] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Sky's%20Difficulty%20Chart%20Obby.lua", -- Sky's Difficulty Chart Obby
 }
 
 if Games[game.PlaceId] then
