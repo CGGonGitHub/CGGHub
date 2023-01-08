@@ -54,7 +54,7 @@ local speeds = {
 print(speeds[_G.Autocompletespeed])
 local Tab = Window:AddTab("Main", {default = true})
 local AutocompleteSection = Tab:AddSection("Autocompletes", {default = false})
-local Toggle = AutocompleteSection:AddToggle("Autocomplete Normal", {flag = "Toggle_Flag", default = false}, function(bool)
+local Toggle = AutocompleteSection:AddToggle("Autocomplete Toggle", {flag = "Toggle_Flag", default = false}, function(bool)
     looping = bool
         for count = previousPos, 116, 1 do
             game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[count].CFrame + Vector3.new(0, 3, 0)
