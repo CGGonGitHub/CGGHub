@@ -19,6 +19,13 @@ if Games[game.PlaceId] then
 	loadstring(game:HttpGet(Games[game.PlaceId]))()
 else
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Universal.lua"))()
+	task.wait(3)
+	Library:Notify({
+	title = "Game unsupported - loading universal",
+	text = "Please join my discord and ask me nicely to add the game",
+	duration = 10,
+	color = Color3.fromRGB(0, 255, 0),
+	}) 
 end
 
 -- [[ formatting by alyssa#2303 ]]--
