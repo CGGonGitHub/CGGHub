@@ -41,10 +41,10 @@ cmdm = Mouses
 speedofthefly = 1
 speedofthevfly = 1
 _G.Autocompletespeed = 10
-NormalpreviousPos = 1
-ProPreviousPos = 1
-MonthlyPreviousPos = 1
-ExperimentalPreviousPos = 1
+NormalpreviousPos = 2
+ProPreviousPos = 2
+MonthlyPreviousPos = 2
+ExperimentalPreviousPos = 2
 -- Main
 local speeds = {
     [1] = 1,
@@ -57,6 +57,12 @@ local speeds = {
     [8] = 0.3,
     [9] = 0.2,
     [10] = 0.1
+}
+local autocompletes = {
+    ["Normal"] = NormalpreviousPos,
+    ["Pro"] = ProPreviousPos,
+    ["MonthlyPreviousPos"] = MonthlyPreviousPos,
+    ["ExperimentalPreviousPos"] = ExperimentalPreviousPos
 }
 print(speeds[_G.Autocompletespeed])
 local Tab = Window:AddTab("Main", {default = true})
@@ -102,6 +108,15 @@ local Slider = AutocompleteSection:AddSlider("Speed of the autocompletes", 1, 10
 end)
 local Button = AutocompleteSection:AddButton("Teleport to Spawn", function()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0)
+end)
+local Dropdown = AutocompleteSection:AddDropdown("Teleport to previous position", {"Normal", "Pro", "Monthly", }, {default = ""}, function(selected)
+	if selected == "Normal" then
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[NormalpreviousPos - 1].Part.CFrame + Vector3.new(0, 3, 0)
+    elseif selected == "Pro" then
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.CheckpointsPro[ProPreviousPos - 1].PrimaryP.CFrame + Vector3.new(0, 3, 0)
+    elseif selected == "Monthly" then
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.CheckpointsMonthly[MonthlyPreviousPos - 1].PrimaryP.CFrame + Vector3.new(0, 3, 0)
+    end
 end)
 
 -- Localplayer
@@ -370,7 +385,15 @@ end
 local Toggle = LoopTeleportSection:AddToggle("Loop teleport", {flag = "Toggle_Flag", default = false}, function(bool)
     loopteleport()
 end)
-
+local GameTeleportSection = TeleportTab:AddSection("Game Teleports", {default = false})
+local Button = GameTeleportSection:AddButton("Teleport to End", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints[381].Part.CFrame + Vector3.new(0,3,0)
+end)
+local Button = GameTeleportSection:AddButton("Teleport to Spawn", function()
+    game:GetService("ReplicatedStorage").Events.ChangeCourse:FireServer("Experimental")
+    task.wait()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(10,3,0)
+end)
 -- Features
 local FeaturesTab = Window:AddTab("Features", {default = false})
 local SpamSection = FeaturesTab:AddSection("Spam", {default = false})
