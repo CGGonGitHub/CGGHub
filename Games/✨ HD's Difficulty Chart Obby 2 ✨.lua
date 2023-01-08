@@ -59,7 +59,7 @@ local Toggle = AutocompleteSection:AddToggle("Autocomplete Normal", {flag = "Tog
         for count = previousPos, 339, 1 do
             game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[count].CFrame + Vector3.new(0, 3, 0)
             NormalpreviousPos = count
-            if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0) break end
+            if not looping then game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0) break end
             task.wait(speeds[_G.Autocompletespeed])
         end
 end)
@@ -67,7 +67,10 @@ local Slider = AutocompleteSection:AddSlider("Speed of the autocomplete", 1, 10,
     _G.Autocompletespeed = val
 end)
 local Button = AutocompleteSection:AddButton("Teleport to Spawn", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0)
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0)
+end)
+local Button = AutocompleteSection:AddButton("Teleport to previous position", function()
+	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[previousPos].CFrame + Vector3.new(0,3,0)
 end)
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
@@ -337,7 +340,7 @@ local Toggle = LoopTeleportSection:AddToggle("Loop teleport", {flag = "Toggle_Fl
 end)
 local GameTeleportSection = TeleportTab:AddSection("Game Teleports", {default = false})
 local Button = GameTeleportSection:AddButton("Teleport to Spawn", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0)
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0)
 end)
 -- Features
 local FeaturesTab = Window:AddTab("Features", {default = false})
