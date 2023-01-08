@@ -44,20 +44,20 @@ speedofthevfly = 1
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
 local Local_PlayerSection = Local_Player:AddSection("Basic Shit", {default = false})
-local previousWalkSpeed = lp.Character.Humanoid.WalkSpeed
-local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, lp.Character.Humanoid.WalkSpeed, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+local previousWalkSpeed = lp.Character:WaitForChild("Humanoid").WalkSpeed
+local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, lp.Character:WaitForChild("Humanoid").WalkSpeed, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
-		lp.Character.Humanoid.WalkSpeed = val
+		lp.Character:WaitForChild("Humanoid").WalkSpeed = val
     elseif not bool then
-		lp.Character.Humanoid.WalkSpeed = previousWalkSpeed
+		lp.Character:WaitForChild("Humanoid").WalkSpeed = previousWalkSpeed
 	end
 end)
-local previousJumpPower = lp.Character.Humanoid.JumpPower
-local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, lp.Character.Humanoid.JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+local previousJumpPower = lp.Character:WaitForChild("Humanoid").JumpPower
+local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, lp.Character:WaitForChild("Humanoid").JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
-		lp.Character.Humanoid.JumpPower = val
+		lp.Character:WaitForChild("Humanoid").JumpPower = val
     elseif not bool then
-		lp.Character.Humanoid.JumpPower = previousJumpPower
+		lp.Character:WaitForChild("Humanoid").JumpPower = previousJumpPower
 	end
 end)
 local previousGravity = game.Workspace.Gravity
@@ -111,7 +111,7 @@ function sFLY(vfly)
 	while not lp or not lp.Character or not lp.Character:FindFirstChild('HumanoidRootPart') or not lp.Character:FindFirstChild('Humanoid') or not cmdm do
 		 wait()
 	end 
-	local T = lp.Character.HumanoidRootPart
+	local T = lp.Character:WaitForChild("HumanoidRootPart")
 	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
 	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
 	local SPEED = 3
@@ -150,7 +150,7 @@ function sFLY(vfly)
 			SPEED = 0
 			BG:destroy()
 			BV:destroy()
-			lp.Character.Humanoid.PlatformStand = false
+			lp.Character:WaitForChild("Humanoid").PlatformStand = false
 		end)
 	end
 	cmdm.KeyDown:connect(function(KEY)
@@ -222,14 +222,14 @@ local FlySlider = Local_PlayerSection:AddSlider("Fly", 1, 10, 1, {toggleable = t
         sFLY(vfly)
     elseif not bool then
         FLYING = false
-        lp.Character.Humanoid.PlatformStand = false
+        lp.Character:WaitForChild("Humanoid").PlatformStand = false
     end
 end)
 local AnchoredToggle = Local_PlayerSection:AddToggle("Anchored", {flag = "Toggle_Flag", default = false}, function(bool)
 	if bool then 
-        lp.Character.HumanoidRootPart.Anchored = true
+        lp.Character:WaitForChild("HumanoidRootPart").Anchored = true
     elseif not bool then
-        lp.Character.HumanoidRootPart.Anchored = false
+        lp.Character:WaitForChild("HumanoidRootPart").Anchored = false
     end
 end)
 
@@ -252,7 +252,7 @@ local Dropdown = TeleportSection:AddDropdown("Player to teleport to", getAllPlay
     x.Size = Vector3.new(1000,0.5,0.5)
     x.Material = Enum.Material.Neon
     x.Color = Color3.fromRGB(0, 225, 255)
-    x.CFrame = lp.Character.HumanoidRootPart.CFrame
+    x.CFrame = lp.Character:WaitForChild("HumanoidRootPart").CFrame
     x.Rotation = Vector3.new(0,0,90)
     x.CanCollide = false
     x.Anchored = true
@@ -262,14 +262,14 @@ local Dropdown = TeleportSection:AddDropdown("Player to teleport to", getAllPlay
     Anim:Play()
     task.wait(1)
     x:Destroy()
-    Teleport(game.Players[selected].Character.HumanoidRootPart.CFrame)
+    Teleport(game.Players[selected].Character:WaitForChild("HumanoidRootPart").CFrame)
     x = Instance.new("Part")
     
     x.Shape = Enum.PartType.Cylinder
     x.Size = Vector3.new(1000,5,5)
     x.Material = Enum.Material.Neon
     x.Color = Color3.fromRGB(0, 225, 255)
-    x.CFrame = lp.Character.HumanoidRootPart.CFrame
+    x.CFrame = lp.Character:WaitForChild("HumanoidRootPart").CFrame
     x.Rotation = Vector3.new(0,0,90)
     x.CanCollide = false
     x.Parent = game.Workspace
@@ -300,7 +300,7 @@ end)
 local function loopteleport()
     _G.loopteleportenabled = not _G.loopteleportenabled
     while _G.loopteleportenabled do
-        lp.Character.HumanoidRootPart.CFrame = game.Players[xyz].Character.HumanoidRootPart.CFrame
+        lp.Character:WaitForChild("HumanoidRootPart").CFrame = game.Players[xyz].Character:WaitForChild("HumanoidRootPart").CFrame
         task.wait()
     end
 end
@@ -321,7 +321,7 @@ local function spam()
         for count = 0, 6, 1 do
             game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.spam, "All")
         end
-        task.wait(16)
+        task.wait(15)
     end
 end
 local Toggle = SpamSection:AddToggle("spam", {flag = "Toggle_Flag", default = false}, function(bool)
