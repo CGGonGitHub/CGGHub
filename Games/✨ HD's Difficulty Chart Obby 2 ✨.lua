@@ -11,15 +11,9 @@ for i, v in next, game.CoreGui:GetChildren() do
         v:Destroy()
     end
 end
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
-Library:Notify({
-    title = "Game unsupported - loading universal",
-    text = "Please join my discord and ask me nicely to add the game",
-    duration = 10,
-    color = Color3.fromRGB(0, 255, 0),
-}) 
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))() 
 local Window = Library:AddWindow({
-	title = {"Universal", "CGGHub"},
+	title = {game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, "CGGHub"},
 	theme = {
 		Accent = Color3.fromRGB(0, 255, 0)
 	},
