@@ -40,46 +40,69 @@ Mouses = lp:GetMouse()
 cmdm = Mouses
 speedofthefly = 1
 speedofthevfly = 1
+_G.Autocompletespeed = 10
+NormalpreviousPos = 1
+ProPreviousPos = 1
+MonthlyPreviousPos = 1
+ExperimentalPreviousPos = 1
 -- Main
+local speeds = {
+    [1] = 1,
+    [2] = 0.9,
+    [3] = 0.8,
+    [4] = 0.7,
+    [5] = 0.6,
+    [6] = 0.5,
+    [7] = 0.4,
+    [8] = 0.3,
+    [9] = 0.2,
+    [10] = 0.1
+}
+print(speeds[_G.Autocompletespeed])
 local Tab = Window:AddTab("Main", {default = true})
 local AutocompleteSection = Tab:AddSection("Autocompletes", {default = false})
-local NormalButton = AutocompleteSection:AddButton("Autocomplete Normal", function()
-	for count = 1, 381, 1 do
-        cfx = workspace.Checkpoints[count].Part.CFrame.X
-        cfy = workspace.Checkpoints[count].Part.CFrame.Y
-        cfz = workspace.Checkpoints[count].Part.CFrame.Z
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(cfx, cfy + 3, cfz)
-        task.wait(0.1)
+local Toggle = AutocompleteSection:AddToggle("Autocomplete Normal", {flag = "Toggle_Flag", default = false}, function(bool)
+    looping = bool
+        for count = NormalpreviousPos, 381, 1 do
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[count].Part.CFrame + Vector3.new(0, 3, 0)
+            NormalpreviousPos = count
+            if not looping then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0) break end
+            task.wait(speeds[_G.Autocompletespeed])
+        end
+end)
+local Toggle = AutocompleteSection:AddToggle("Autocomplete Pro", {flag = "Toggle_Flag", default = false}, function(bool)
+	local looping2 = bool
+    for count = ProPreviousPos, 31, 1 do
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.CheckpointsPro[count].PrimaryP.CFrame + Vector3.new(0, 3, 0)
+        ProPreviousPos = count
+        if not looping2 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0) break end
+        task.wait(speeds[_G.Autocompletespeed])
     end
 end)
-local ProButton = AutocompleteSection:AddButton("Autocomplete Pro", function()
-	for count = 1, 31, 1 do
-        cfx = workspace.CheckpointsPro[count].PrimaryP.CFrame.X
-        cfy = workspace.CheckpointsPro[count].PrimaryP.CFrame.Y
-        cfz = workspace.CheckpointsPro[count].PrimaryP.CFrame.Z
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(cfx, cfy + 3, cfz)
-        task.wait(0.1)
+local Toggle = AutocompleteSection:AddToggle("Autocomplete Monthly", {flag = "Toggle_Flag", default = false}, function(bool)
+	local looping3 = bool
+    for count = MonthlyPreviousPos, 31, 1 do
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.CheckpointsMonthly[count].PrimaryP.CFrame + Vector3.new(0, 3, 0)
+        MonthlyPreviousPos = count
+        if not looping3 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0) break end
+        task.wait(speeds[_G.Autocompletespeed])
     end
 end)
-local MonthlyButton = AutocompleteSection:AddButton("Autocomplete Monthly", function()
-	for count = 1, 31, 1 do
-        cfx = workspace.CheckpointsMonthly[count].PrimaryP.CFrame.X
-        cfy = workspace.CheckpointsMonthly[count].PrimaryP.CFrame.Y
-        cfz = workspace.CheckpointsMonthly[count].PrimaryP.CFrame.Z
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(cfx, cfy + 3, cfz)
-        task.wait(0.1)
+local Toggle = AutocompleteSection:AddToggle("Autocomplete Experimental", {flag = "Toggle_Flag", default = false}, function(bool)
+	local looping4 = bool
+    for count = ExperimentalPreviousPos, 3, 1 do
+        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.CheckpointsPro[count].Part.CFrame + Vector3.new(0, 3, 0)
+        ExperimentalPreviousPos = count
+        if not looping4 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0) break end
+        task.wait(speeds[_G.Autocompletespeed])
     end
 end)
-local ExperimentalButton = AutocompleteSection:AddButton("Autocomplete Experimental", function()
-	for count = 1, 3, 1 do
-        cfx = workspace.ExperimentalTeleports[count].Part.CFrame.X
-        cfy = workspace.ExperimentalTeleports[count].Part.CFrame.Y
-        cfz = workspace.ExperimentalTeleports[count].Part.CFrame.Z
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(cfx, cfy + 3, cfz)
-        task.wait(0.1)
-    end
+local Slider = AutocompleteSection:AddSlider("Speed of the autocompletes", 1, 10, 50, {toggleable = false, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+	_G.Autocompletespeed = val
 end)
-
+local Button = AutocompleteSection:AddButton("Teleport to Spawn", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.LobbyArea.SpawnLocation.Spawn.CFrame + Vector3.new(0,3,0)
+end)
 
 -- Localplayer
 local Local_Player = Window:AddTab("Local player", {default = false})
