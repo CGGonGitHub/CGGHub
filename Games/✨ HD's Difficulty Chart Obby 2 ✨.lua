@@ -58,7 +58,7 @@ local Toggle = AutocompleteSection:AddToggle("Autocomplete Normal", {flag = "Tog
     looping = bool
         for count = previousPos, 339, 1 do
             game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[count].CFrame + Vector3.new(0, 3, 0)
-            NormalpreviousPos = count
+            previousPos = count
             if not looping then game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Checkpoints[0].CFrame + Vector3.new(0,3,0) break end
             task.wait(speeds[_G.Autocompletespeed])
         end
