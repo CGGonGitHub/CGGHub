@@ -34,6 +34,7 @@ _G.spam = "CGGHub on top!"
 _G.spamenabled = true
 _G.infinitespamenabled = true
 _G.loopteleportenabled = true
+spectateplayer = game.Players:FindFirstChild("a")
 ESPbool = false
 lp = game:GetService("Players").LocalPlayer
 VU = game:GetService("VirtualUser")
@@ -291,12 +292,7 @@ local LoopTeleportSection = TeleportTab:AddSection("Loop teleport", {default = f
 local Dropdown = LoopTeleportSection:AddDropdown("Players", getAllPlayers(), {default = ""}, function(selected)
     xyz = selected
 end)
-game.Players.PlayerAdded:Connect(function(player)
-    Dropdown:Add(player.Name)
-end)
-game.Players.PlayerRemoving:Connect(function(player)
-    Dropdown:Remove(player.Name)
-end)
+
 local function loopteleport()
     _G.loopteleportenabled = not _G.loopteleportenabled
     while _G.loopteleportenabled do
@@ -457,7 +453,24 @@ local Box = ESPSection:AddBox("OutlineTransparency (0, 0.1, 0.2,... 1)", {fireon
     end
 end)
 
+local SpectateSection = VisualsTab:AddSection("Spectate", {default = false})
+local Toggle = SpectateSection:AddToggle("Spectate", {flag = "Toggle_Flag", default = false}, function(bool)
+	if bool then
+		workspace.CurrentCamera.CameraSubject = game.Players[_G.spectateplayer].Character.Humanoid
+	else
+		workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+	end
+end)
+local Dropdown = SpectateSection:AddDropdown("Player to spectate", getAllPlayers(), {default = ""}, function(selected)
+	_G.spectateplayer = selected
+end)
 
+game.Players.PlayerAdded:Connect(function(player)
+    Dropdown:Add(player.Name)
+end)
+game.Players.PlayerRemoving:Connect(function(player)
+    Dropdown:Remove(player.Name)
+end)
 
 -- Misc
 local MiscTab = Window:AddTab("Misc", {default = false})
