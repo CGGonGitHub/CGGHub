@@ -54,7 +54,7 @@ local WalkSpeedSlider = Local_PlayerSection:AddSlider("Walkspeed", 1, 300, lp.Ch
 	end
 end)
 local previousJumpPower = lp.Character:WaitForChild("Humanoid").JumpPower
-local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 3000, lp.Character:WaitForChild("Humanoid").JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
+local JumpPowerSlider = Local_PlayerSection:AddSlider("JumpPower", 1, 200, lp.Character:WaitForChild("Humanoid").JumpPower, {toggleable = true, default = false, flag = "Slider_Flag", fireontoggle = true, fireondrag = true, rounded = true}, function(val, bool)
 	if bool then
 		lp.Character:WaitForChild("Humanoid").JumpPower = val
     elseif not bool then
