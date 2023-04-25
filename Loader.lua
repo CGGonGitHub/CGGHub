@@ -17,6 +17,7 @@ local Games = {
 	[10480595198] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Increasing%20Impossible%20Stud%20Wall%20Obby.lua", -- ✨Increasing Impossible Stud Wall Obby
 	[6289365295] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Sky's%20Difficulty%20Chart%20Obby.lua", -- Sky's Difficulty Chart Obby
 	[7147922068] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Cotton's%20Difficulty%20Chart%20Obby%20HARD!.lua" -- ☁️ Cotton's Difficulty Chart Obby HARD!
+	[142823291] = "https://raw.githubusercontent.com/CGGonGitHub/CGGHub/main/Games/Murder%20Mystery%202.lua" -- Murder Mystery 2
 }
 
 if Games[game.PlaceId] then
